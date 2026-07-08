@@ -1,8 +1,11 @@
 # SkillRadar
 
-Real-time job market intelligence for data careers. Ingests live data science / ML
-job postings daily, extracts the skills each posting demands with an LLM, and tracks
-and forecasts which skills are rising or falling.
+**Live demo: [skillradar-ywyoyxql2yxvmxmcl2pbxg.streamlit.app](https://skillradar-ywyoyxql2yxvmxmcl2pbxg.streamlit.app/)**
+
+Job market intelligence for data careers in the USA. Ingests live data science / ML
+job postings every 6 hours, extracts the skills each posting demands, trains salary
+and role-archetype models on the accumulated data, and pushes new-opening alerts —
+fully automated, retrained daily, at $0/month.
 
 ## Status
 
@@ -15,7 +18,7 @@ and forecasts which skills are rising or falling.
 - [ ] Phase 4c — LLM extraction benchmark vs the rule baseline (code ready in `src/extract.py`; Groq free tier planned)
 - [x] **Phase 5 — Streamlit dashboard**: `streamlit run dashboard.py` — market overview, segment analysis, ML lab, and job feed tabs
 - [x] **Phase 5b — Near-real-time alerts**: pipeline runs every 6 hours; new entry/mid openings push to your phone via [ntfy.sh](https://ntfy.sh) (`python -m src.alerts`)
-- [ ] Phase 6 — Public deployment on Streamlit Community Cloud
+- [x] **Phase 6 — Public deployment**: live on Streamlit Community Cloud, auto-redeploys on every push (so the 6-hourly data commits keep the public site fresh)
 
 ## Alerts
 
