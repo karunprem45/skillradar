@@ -20,7 +20,18 @@ and forecasts which skills are rising or falling.
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env   # then fill in your keys (optional for Phase 1)
+```
+
+Optionally create a `.env` file in the repo root (gitignored) for API keys:
+
+```bash
+# Adzuna (developer.adzuna.com — free tier): US postings with salary data.
+# Without these, ingestion uses only the keyless sources.
+ADZUNA_APP_ID=your_app_id
+ADZUNA_APP_KEY=your_app_key
+
+# Database override (defaults to SQLite at <repo>/data/skillradar.db):
+# DATABASE_URL=postgresql://user:pass@host/skillradar
 ```
 
 ## Run
