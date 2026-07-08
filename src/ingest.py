@@ -1,11 +1,10 @@
 """Phase 1 ingester: pull data/ML job postings into the jobs table.
 
-Sources:
-  - Adzuna (US, all job types)      — needs ADZUNA_APP_ID / ADZUNA_APP_KEY in .env
-  - Remotive (remote tech jobs)     — no key needed
-  - Arbeitnow (tech job board)      — no key needed
-  - Jobicy (remote tech jobs)       — no key needed
-  - The Muse (US city-level jobs)   — no key needed
+US-only scope. Sources:
+  - Adzuna (US, all job types)          — needs ADZUNA_APP_ID / ADZUNA_APP_KEY in .env
+  - Remotive (US-eligible remote jobs)  — no key needed
+  - Jobicy (US-eligible remote jobs)    — no key needed
+  - The Muse (US city-level jobs)       — no key needed
 
 Run:  python -m src.ingest
 Re-running is safe: postings are deduped on source_id.
@@ -35,6 +34,21 @@ RELEVANT = re.compile(
     r"data scien|machine learning|\bml\b|data engineer|data analy|mlops|\bai\b|artificial intelligence",
     re.IGNORECASE,
 )
+
+# US-only scope: remote postings must be open to US applicants...
+US_ELIGIBLE = re.compile(
+    r"usa|united states|u\.s\.|north america|americas|worldwide|anywhere", re.IGNORECASE
+)
+# ...and on-site postings must carry a US state code (e.g. "New York, NY")
+US_STATE = re.compile(
+    r",\s*(?:AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|"
+    r"MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY|DC)\b"
+)
+
+
+def is_us_location(location):
+    loc = location or ""
+    return bool(US_ELIGIBLE.search(loc) or US_STATE.search(loc) or "Flexible / Remote" in loc)
 
 
 def strip_html(text):
@@ -99,6 +113,8 @@ def fetch_remotive():
         for item in resp.json().get("jobs", []):
             if not RELEVANT.search(item.get("title", "")):
                 continue
+            if not is_us_location(item.get("candidate_required_location")):
+                continue
             yield {
                 "source": "remotive",
                 "source_id": f"remotive:{item['id']}",
@@ -114,32 +130,6 @@ def fetch_remotive():
             }
 
 
-def fetch_arbeitnow():
-    for page in range(1, 6):
-        resp = requests.get(
-            "https://www.arbeitnow.com/api/job-board-api",
-            params={"page": page},
-            timeout=30,
-        )
-        resp.raise_for_status()
-        for item in resp.json().get("data", []):
-            if not RELEVANT.search(item.get("title", "")):
-                continue
-            yield {
-                "source": "arbeitnow",
-                "source_id": f"arbeitnow:{item['slug']}",
-                "title": item.get("title", ""),
-                "company": item.get("company_name"),
-                "location": item.get("location"),
-                "remote": item.get("remote"),
-                "salary_min": None,
-                "salary_max": None,
-                "description": strip_html(item.get("description")),
-                "url": item.get("url"),
-                "posted_at": None,
-            }
-
-
 def fetch_jobicy():
     for industry in ("data-science", "engineering"):
         resp = requests.get(
@@ -150,6 +140,8 @@ def fetch_jobicy():
         resp.raise_for_status()
         for item in resp.json().get("jobs", []):
             if not RELEVANT.search(item.get("jobTitle", "")):
+                continue
+            if not is_us_location(item.get("jobGeo")):
                 continue
             yield {
                 "source": "jobicy",
@@ -178,6 +170,8 @@ def fetch_themuse():
             if not RELEVANT.search(item.get("name", "")):
                 continue
             locations = ", ".join(loc["name"] for loc in item.get("locations", []))
+            if not is_us_location(locations):
+                continue
             yield {
                 "source": "themuse",
                 "source_id": f"themuse:{item['id']}",
@@ -199,7 +193,7 @@ def ingest():
     existing = {sid for (sid,) in session.query(Job.source_id).all()}
     new_count, skipped = 0, 0
 
-    for fetch in (fetch_adzuna, fetch_remotive, fetch_arbeitnow, fetch_jobicy, fetch_themuse):
+    for fetch in (fetch_adzuna, fetch_remotive, fetch_jobicy, fetch_themuse):
         source_new = 0
         try:
             for row in fetch():

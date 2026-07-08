@@ -6,7 +6,7 @@ and forecasts which skills are rising or falling.
 
 ## Status
 
-- [x] **Phase 1 — Ingestion**: pull postings from 5 sources (Adzuna, Remotive, Arbeitnow, Jobicy, The Muse)
+- [x] **Phase 1 — Ingestion**: pull US postings from 4 sources (Adzuna, Remotive, Jobicy, The Muse) — US-only filter on location
 - [x] **Phase 2a — Rule-based skill extraction** (free baseline): curated vocabulary + regex matching, plus seniority inference (`python -m src.extract_rules`)
 - [x] **Phase 2b — Measured extraction quality**: hand-labeled gold set + error analysis (`python -m src.evaluate`) — **F1 0.995** (0.96 before error-analysis fixes)
 - [x] **Phase 3 — Daily automated pipeline**: GitHub Actions cron runs the full loop daily at 11:00 UTC — ingest → extract → evaluate → retrain — and commits data + model artifacts
@@ -27,7 +27,7 @@ filter (default: entry/mid level). Free, no account:
    `NTFY_TOPIC=<your-unguessable-topic>`; optionally `ALERT_SENIORITY=entry,mid` and `ALERT_HOURS=8`.
 3. That's it — `src/alerts.py` runs after every ingest.
 
-Why polling, not push: the job-board APIs (Adzuna, Remotive, The Muse, Jobicy, Arbeitnow)
+Why polling, not push: the job-board APIs (Adzuna, Remotive, The Muse, Jobicy)
 are pull-only — none offer webhooks — so the 6-hour cron is the honest "near-real-time".
 
 ## Model card (auto-refreshed daily)
@@ -69,7 +69,7 @@ python -m src.ingest   # pull postings (re-run safe, dedupes on source_id)
 python -m src.stats    # sanity-check what's in the DB
 ```
 
-Without any API keys this uses the keyless sources (Remotive, Arbeitnow).
+Without any API keys this uses the keyless sources (Remotive, Jobicy, The Muse).
 Add Adzuna keys to `.env` for US city-level postings with salary data.
 
 The database is SQLite (`data/skillradar.db`) by default; set `DATABASE_URL`
@@ -79,5 +79,5 @@ in `.env` to point at Postgres/Neon when scaling up.
 
 - Adzuna's free search API returns **truncated ~500-char description snippets**,
   so its postings are used for salary/location/title analytics but excluded from
-  skill-frequency stats. Full-text sources (Remotive, Jobicy, The Muse, Arbeitnow)
+  skill-frequency stats. Full-text sources (Remotive, Jobicy, The Muse)
   drive the skill analysis and grow with every daily run.

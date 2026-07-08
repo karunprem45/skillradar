@@ -346,7 +346,8 @@ with tab_segments:
     with st.expander("Data notes & sources"):
         st.markdown(
             """
-- **Sources:** Adzuna (US, salaries), Remotive, Jobicy, The Muse, Arbeitnow — ingested daily at 11:00 UTC via GitHub Actions.
+- **Scope: USA jobs only** — on-site postings must carry a US location; remote postings must be open to US applicants.
+- **Sources:** Adzuna (US, salaries), Remotive, Jobicy, The Muse — ingested every 6 hours via GitHub Actions.
 - **Skill extraction** is rule-based (curated ~90-skill vocabulary, word-boundary regex) — free and reproducible.
 - Adzuna's free API truncates descriptions, so **skill percentages use only full-description sources**; Adzuna powers salary and metro stats.
 - Segment skill percentages are within postings that have at least one extracted skill.
