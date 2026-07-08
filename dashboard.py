@@ -114,7 +114,7 @@ st.markdown(
 @st.cache_data(ttl=3600)
 def load_data():
     jobs = pd.read_sql(
-        "SELECT id, source, title, location, remote, salary_min, salary_max, seniority, ingested_at FROM jobs",
+        "SELECT id, source, title, company, location, remote, salary_min, salary_max, seniority, ingested_at FROM jobs",
         engine,
     )
     skills = pd.read_sql("SELECT job_id, skill FROM job_skills", engine)
@@ -305,6 +305,39 @@ with tab_segments:
                     )
                 else:
                     st.caption("not enough skill data")
+
+    st.write("")
+
+    with st.container(border=True):
+        st.subheader("Who hires at each level")
+        st.caption("Seniority mix of the top hiring companies — % of each company's postings")
+        comp = jobs.dropna(subset=["company", "seniority"])
+        top_companies = comp.company.value_counts().head(12)
+        mix = pd.crosstab(comp.company, comp.seniority).reindex(top_companies.index)
+        mix = mix.reindex(columns=SENIORITY_ORDER, fill_value=0)
+        pct_mix = mix.div(mix.sum(axis=1), axis=0) * 100
+        y_labels = [f"{name}  ({n})" for name, n in top_companies.items()]
+
+        fig = go.Figure()
+        for i, level in enumerate(SENIORITY_ORDER):
+            vals = pct_mix[level]
+            fig.add_bar(
+                x=vals, y=y_labels, orientation="h", name=level,
+                marker=dict(color=ORDINAL_FILLS[i], line=dict(color="#141413", width=2)),
+                text=[f"{v:.0f}%" if v >= 12 else "" for v in vals],
+                textposition="inside",
+                # brightest fills need dark text for contrast
+                insidetextfont=dict(color="#0a0a0a" if i == 3 else INK, size=11),
+                hovertemplate="%{y}<br>" + level + ": %{x:.0f}%<extra></extra>",
+            )
+        style(fig, height=460, right=10)
+        fig.update_layout(
+            barmode="stack", showlegend=True,
+            legend=dict(orientation="h", y=1.08, x=0, font=dict(color=INK_MUTED)),
+        )
+        fig.update_yaxes(autorange="reversed", automargin=True)
+        fig.update_xaxes(range=[0, 100], ticksuffix="%")
+        st.plotly_chart(fig, use_container_width=True)
 
     st.divider()
 
