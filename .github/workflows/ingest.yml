@@ -2,7 +2,7 @@ name: Daily ingest
 
 on:
   schedule:
-    - cron: "0 11 * * *" # 11:00 UTC = 6/7am Boston, daily
+    - cron: "0 5,11,17,23 * * *" # every 6h — near-real-time alerts, Adzuna stays under quota
   workflow_dispatch: # allow manual runs from the Actions tab
 
 permissions:
@@ -29,6 +29,11 @@ jobs:
 
       - name: Extract skills (rule-based)
         run: python -m src.extract_rules
+
+      - name: Send new-posting alerts
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python -m src.alerts
 
       - name: Retrain models on fresh data
         run: |

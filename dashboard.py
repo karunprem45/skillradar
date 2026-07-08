@@ -114,7 +114,7 @@ st.markdown(
 @st.cache_data(ttl=3600)
 def load_data():
     jobs = pd.read_sql(
-        "SELECT id, source, title, company, location, remote, salary_min, salary_max, seniority, ingested_at FROM jobs",
+        "SELECT id, source, title, company, location, remote, salary_min, salary_max, seniority, url, ingested_at FROM jobs",
         engine,
     )
     skills = pd.read_sql("SELECT job_id, skill FROM job_skills", engine)
@@ -178,7 +178,9 @@ st.caption(
     "skills extracted automatically. github.com/karunprem45/skillradar"
 )
 
-tab_overview, tab_segments, tab_ml = st.tabs(["Market overview", "Segment analysis", "ML lab"])
+tab_overview, tab_segments, tab_ml, tab_feed = st.tabs(
+    ["Market overview", "Segment analysis", "ML lab", "Job feed"]
+)
 
 # ================= DIVISION 1: MARKET OVERVIEW =================
 with tab_overview:
@@ -453,3 +455,52 @@ with tab_ml:
 - Everything retrains daily in CI on the fresh data: `train_salary` + `cluster_roles` run after ingestion.
             """
         )
+
+# ================= DIVISION 4: JOB FEED =================
+with tab_feed:
+    st.caption(
+        "Latest openings pulled by the pipeline — refreshed automatically several times a day. "
+        "Push alerts for new matches via ntfy.sh (see README)."
+    )
+
+    f1, f2, f3, f4 = st.columns([2, 2, 1, 1])
+    query = f1.text_input("Search title / company", "", placeholder="e.g. machine learning, Boston, Amazon")
+    levels = f2.multiselect("Seniority", SENIORITY_ORDER, default=[])
+    remote_only = f3.checkbox("Remote only")
+    salary_only = f4.checkbox("With salary")
+
+    feed = jobs.sort_values("ingested_at", ascending=False).copy()
+    if query:
+        needle = query.strip().lower()
+        hay = (feed.title.fillna("") + " " + feed.company.fillna("") + " " + feed.location.fillna("")).str.lower()
+        feed = feed[hay.str.contains(needle, regex=False)]
+    if levels:
+        feed = feed[feed.seniority.isin(levels)]
+    if remote_only:
+        feed = feed[feed.remote == True]  # noqa: E712
+    if salary_only:
+        feed = feed.dropna(subset=["salary_min", "salary_max"])
+
+    feed["salary"] = feed.apply(
+        lambda r: f"${r.salary_min / 1000:.0f}k – ${r.salary_max / 1000:.0f}k"
+        if pd.notna(r.salary_min) and pd.notna(r.salary_max) else "",
+        axis=1,
+    )
+    feed["added"] = pd.to_datetime(feed.ingested_at).dt.strftime("%b %d")
+
+    st.caption(f"{len(feed):,} matching postings")
+    st.dataframe(
+        feed[["title", "company", "location", "seniority", "salary", "added", "url"]].head(200),
+        use_container_width=True,
+        height=560,
+        hide_index=True,
+        column_config={
+            "title": st.column_config.TextColumn("Role", width="large"),
+            "company": "Company",
+            "location": "Location",
+            "seniority": "Level",
+            "salary": "Salary",
+            "added": "Added",
+            "url": st.column_config.LinkColumn("Apply", display_text="open ↗"),
+        },
+    )
