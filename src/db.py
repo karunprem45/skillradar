@@ -1,14 +1,16 @@
 """Database models and session setup for SkillRadar."""
 
 import os
+from pathlib import Path
 
 from dotenv import load_dotenv
 from sqlalchemy import Boolean, Column, Date, DateTime, Float, Integer, String, Text, create_engine, func
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-load_dotenv()
+ROOT = Path(__file__).resolve().parent.parent
+load_dotenv(ROOT / ".env")
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///data/skillradar.db")
+DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{ROOT / 'data' / 'skillradar.db'}")
 
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)

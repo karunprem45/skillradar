@@ -11,7 +11,7 @@ and forecasts which skills are rising or falling.
 - [ ] Phase 2b — LLM skill extraction to benchmark against the baseline (code ready in `src/extract.py`; needs an API key with credits, or swap to Groq free tier)
 - [x] **Phase 3 — Daily automated pipeline**: GitHub Actions cron runs ingest + extraction every day at 11:00 UTC and commits the updated database
 - [ ] Phase 4 — Trend forecasting + role clustering, tracked in MLflow
-- [ ] Phase 5 — FastAPI + Streamlit dashboard
+- [x] **Phase 5 — Streamlit dashboard**: `streamlit run dashboard.py` — headline stats, top skills, salary by skill, metro comparison, seniority mix
 - [ ] Phase 6 — Docker, CI/CD, monitoring, public deployment
 
 ## Setup
