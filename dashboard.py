@@ -6,20 +6,19 @@ import streamlit as st
 
 from src.db import engine
 
-# carbon theme — monochrome grey ramp on near-black surfaces (lightness carries order,
-# outlines carry the mark, so the single-series charts stay readable and CVD-safe)
-INK = "#e8e8e4"
-INK_MUTED = "#8a8983"
-GRID = "#2c2c2a"
-LINE = "#d8d7d0"                       # bar outline
-FILL = "rgba(216,215,208,0.14)"        # bar fill behind the outline
+# monochrome black & white theme — lightness carries order, outlines carry the mark
+INK = "#ffffff"
+INK_MUTED = "#b3b2ab"
+GRID = "#2e2e2c"
+LINE = "#ffffff"                       # bar outline
+FILL = "rgba(255,255,255,0.12)"        # bar fill behind the outline
 ORDINAL_FILLS = [                      # entry -> staff+ (opacity steps = ordinal ramp)
-    "rgba(216,215,208,0.07)",
-    "rgba(216,215,208,0.20)",
-    "rgba(216,215,208,0.42)",
-    "rgba(216,215,208,0.70)",
+    "rgba(255,255,255,0.06)",
+    "rgba(255,255,255,0.22)",
+    "rgba(255,255,255,0.48)",
+    "rgba(255,255,255,0.85)",
 ]
-FONT = 'system-ui, -apple-system, "Segoe UI", sans-serif'
+FONT = '"Inter", system-ui, sans-serif'
 
 METROS = {
     "Boston": ["Boston", "Suffolk County"],
@@ -55,29 +54,51 @@ st.set_page_config(page_title="SkillRadar", page_icon="📡", layout="wide")
 st.markdown(
     """
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap');
+
+    html, body, [class*="st-"], p, span, label {
+        font-family: 'Inter', system-ui, sans-serif;
+    }
+    h1, h2, h3, div[data-testid="stMetricValue"], button[data-baseweb="tab"] {
+        font-family: 'Space Grotesk', system-ui, sans-serif !important;
+        letter-spacing: -0.01em;
+    }
+
     @keyframes rise {
         from { opacity: 0; transform: translateY(16px); }
         to   { opacity: 1; transform: none; }
     }
     div[data-testid="stMetric"], div.stPlotlyChart, div[data-testid="stExpander"],
-    h1, h2, h3 {
+    div[data-testid="stVerticalBlockBorderWrapper"], h1, h2, h3 {
         animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) both;
     }
     div[data-testid="stColumn"]:nth-of-type(2) > div { animation-delay: 0.10s; }
     div[data-testid="stColumn"]:nth-of-type(3) > div { animation-delay: 0.20s; }
     div[data-testid="stColumn"]:nth-of-type(4) > div { animation-delay: 0.30s; }
     div[data-testid="stColumn"]:nth-of-type(5) > div { animation-delay: 0.40s; }
+
     div[data-testid="stMetric"] {
-        background: #1a1a19;
-        border: 1px solid #2c2c2a;
-        border-radius: 10px;
+        background: #141413;
+        border: 1px solid #3d3d3a;
+        border-radius: 12px;
         padding: 14px 16px;
         transition: border-color 0.25s ease, transform 0.25s ease;
     }
     div[data-testid="stMetric"]:hover {
-        border-color: #4a4a46;
+        border-color: #ffffff;
         transform: translateY(-2px);
     }
+    div[data-testid="stVerticalBlockBorderWrapper"] {
+        background: #141413;
+        border: 1px solid #3d3d3a;
+        border-radius: 12px;
+        transition: border-color 0.25s ease;
+    }
+    div[data-testid="stVerticalBlockBorderWrapper"]:hover {
+        border-color: #6a6a66;
+    }
+
+    button[data-baseweb="tab"] { font-size: 1.05rem; }
     </style>
     """,
     unsafe_allow_html=True,
@@ -103,7 +124,7 @@ def style(fig, height=420, left=0, right=70):
         font=dict(family=FONT, color=INK_MUTED, size=13),
         showlegend=False,
         bargap=0.35,
-        hoverlabel=dict(bgcolor="#1a1a19", bordercolor=LINE, font=dict(color=INK)),
+        hoverlabel=dict(bgcolor="#141413", bordercolor=LINE, font=dict(color=INK)),
     )
     fig.update_xaxes(gridcolor=GRID, zeroline=False, linecolor=GRID)
     fig.update_yaxes(gridcolor="rgba(0,0,0,0)", zeroline=False)
@@ -151,146 +172,147 @@ st.caption(
     "skills extracted automatically. github.com/karunprem45/skillradar"
 )
 
-# ---- headline tiles ----
-llm_pct = skills_ft[skills_ft.skill.isin(["LLMs", "Generative AI", "RAG"])].job_id.nunique() / len(full_text) * 100
-salaries = jobs.dropna(subset=["salary_min", "salary_max"])
+tab_overview, tab_segments = st.tabs(["Market overview", "Segment analysis"])
 
-c1, c2, c3, c4 = st.columns(4)
-c1.metric("Job postings tracked", f"{len(jobs):,}")
-c2.metric("With salary data", f"{len(salaries):,}")
-c3.metric("LLM/GenAI demand", f"{llm_pct:.0f}%")
-c4.metric("Median salary (US)", f"${median_mid(jobs) / 1000:.0f}k")
+# ================= DIVISION 1: MARKET OVERVIEW =================
+with tab_overview:
+    llm_pct = skills_ft[skills_ft.skill.isin(["LLMs", "Generative AI", "RAG"])].job_id.nunique() / len(full_text) * 100
+    salaries = jobs.dropna(subset=["salary_min", "salary_max"])
 
-st.divider()
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Job postings tracked", f"{len(jobs):,}")
+    c2.metric("With salary data", f"{len(salaries):,}")
+    c3.metric("LLM/GenAI demand", f"{llm_pct:.0f}%")
+    c4.metric("Median salary (US)", f"${median_mid(jobs) / 1000:.0f}k")
 
-# ---- top skills + salary by skill ----
-left, right = st.columns(2)
+    st.write("")
 
-with left:
-    st.subheader("Most in-demand skills")
-    st.caption(f"Share of {len(full_text)} full-description postings mentioning each skill")
-    top = skills_ft.skill.value_counts().head(15)
-    pct = (top / len(full_text) * 100).round(0)
-    st.plotly_chart(
-        style(hbar(top.index, top.values, text=[f"{p:.0f}%" for p in pct])),
-        use_container_width=True,
-    )
+    left, right = st.columns(2)
 
-with right:
-    st.subheader("Median salary by skill")
-    st.caption("US postings with salary data (Adzuna); skills with 15+ postings")
-    sal = skills.merge(salaries, left_on="job_id", right_on="id")
-    sal["mid"] = (sal.salary_min + sal.salary_max) / 2
-    by_skill = sal.groupby("skill")["mid"].agg(["median", "count"])
-    by_skill = by_skill[by_skill["count"] >= 15].sort_values("median", ascending=False).head(15)
-    st.plotly_chart(
-        style(hbar(by_skill.index, by_skill["median"], text=[f"${v / 1000:.0f}k" for v in by_skill["median"]])),
-        use_container_width=True,
-    )
-
-st.divider()
-
-# ---- metros + seniority ----
-left, right = st.columns(2)
-
-with left:
-    st.subheader("Postings by metro area")
-    st.caption("US postings (Adzuna), median salary labeled")
-    rows = []
-    for metro, needles in METROS.items():
-        mask = jobs.location.fillna("").str.contains("|".join(needles), case=False)
-        metro_jobs = jobs[mask]
-        med = median_mid(metro_jobs)
-        if med:
-            rows.append({"metro": metro, "n": len(metro_jobs.dropna(subset=["salary_min"])), "median": med})
-    metros = pd.DataFrame(rows).sort_values("n", ascending=False)
-    st.plotly_chart(
-        style(hbar(metros.metro, metros.n, text=[f"${m / 1000:.0f}k" for m in metros["median"]])),
-        use_container_width=True,
-    )
-
-with right:
-    st.subheader("Seniority mix")
-    st.caption("Inferred from titles across all postings")
-    sen = jobs.seniority.value_counts().reindex(SENIORITY_ORDER).fillna(0)
-    fig = go.Figure(
-        go.Bar(
-            x=SENIORITY_ORDER, y=sen.values,
-            marker=dict(color=ORDINAL_FILLS, cornerradius=4, line=dict(color=LINE, width=1.5)),
-            text=[f"{int(v):,}" for v in sen.values], textposition="outside",
-            textfont=dict(color=INK), cliponaxis=False,
-            hovertemplate="%{x}: %{y}<extra></extra>",
+    with left, st.container(border=True):
+        st.subheader("Most in-demand skills")
+        st.caption(f"Share of {len(full_text)} full-description postings mentioning each skill")
+        top = skills_ft.skill.value_counts().head(15)
+        pct = (top / len(full_text) * 100).round(0)
+        st.plotly_chart(
+            style(hbar(top.index, top.values, text=[f"{p:.0f}%" for p in pct])),
+            use_container_width=True,
         )
+
+    with right, st.container(border=True):
+        st.subheader("Median salary by skill")
+        st.caption("US postings with salary data (Adzuna); skills with 15+ postings")
+        sal = skills.merge(salaries, left_on="job_id", right_on="id")
+        sal["mid"] = (sal.salary_min + sal.salary_max) / 2
+        by_skill = sal.groupby("skill")["mid"].agg(["median", "count"])
+        by_skill = by_skill[by_skill["count"] >= 15].sort_values("median", ascending=False).head(15)
+        st.plotly_chart(
+            style(hbar(by_skill.index, by_skill["median"], text=[f"${v / 1000:.0f}k" for v in by_skill["median"]])),
+            use_container_width=True,
+        )
+
+    left, right = st.columns(2)
+
+    with left, st.container(border=True):
+        st.subheader("Postings by metro area")
+        st.caption("US postings (Adzuna), median salary labeled")
+        rows = []
+        for metro, needles in METROS.items():
+            mask = jobs.location.fillna("").str.contains("|".join(needles), case=False)
+            metro_jobs = jobs[mask]
+            med = median_mid(metro_jobs)
+            if med:
+                rows.append({"metro": metro, "n": len(metro_jobs.dropna(subset=["salary_min"])), "median": med})
+        metros = pd.DataFrame(rows).sort_values("n", ascending=False)
+        st.plotly_chart(
+            style(hbar(metros.metro, metros.n, text=[f"${m / 1000:.0f}k" for m in metros["median"]])),
+            use_container_width=True,
+        )
+
+    with right, st.container(border=True):
+        st.subheader("Seniority mix")
+        st.caption("Inferred from titles across all postings")
+        sen = jobs.seniority.value_counts().reindex(SENIORITY_ORDER).fillna(0)
+        fig = go.Figure(
+            go.Bar(
+                x=SENIORITY_ORDER, y=sen.values,
+                marker=dict(color=ORDINAL_FILLS, cornerradius=4, line=dict(color=LINE, width=1.5)),
+                text=[f"{int(v):,}" for v in sen.values], textposition="outside",
+                textfont=dict(color=INK), cliponaxis=False,
+                hovertemplate="%{x}: %{y}<extra></extra>",
+            )
+        )
+        st.plotly_chart(style(fig), use_container_width=True)
+
+# ================= DIVISION 2: SEGMENT ANALYSIS =================
+with tab_segments:
+    st.caption("Slice the market by a dimension — each segment gets its own profile")
+
+    dim = st.selectbox(
+        "Segment by",
+        ["Seniority", "Metro area", "Source", "Remote vs onsite"],
+        label_visibility="collapsed",
     )
-    st.plotly_chart(style(fig), use_container_width=True)
 
-st.divider()
+    segments = []
+    if dim == "Seniority":
+        for level in SENIORITY_ORDER:
+            segments.append((level.title(), jobs[jobs.seniority == level]))
+    elif dim == "Metro area":
+        for metro, needles in METROS.items():
+            mask = jobs.location.fillna("").str.contains("|".join(needles), case=False)
+            segments.append((metro, jobs[mask]))
+    elif dim == "Source":
+        for source in jobs.source.value_counts().index:
+            segments.append((source.title(), jobs[jobs.source == source]))
+    else:
+        segments = [
+            ("Remote", jobs[jobs.remote == True]),  # noqa: E712
+            ("Onsite / unspecified", jobs[jobs.remote != True]),  # noqa: E712
+        ]
 
-# ---- segment analysis ----
-st.subheader("Segment analysis")
-st.caption("Slice the market by a dimension — each segment gets its own profile")
+    segments = [(name, seg) for name, seg in segments if len(seg) >= 5]
 
-dim = st.selectbox(
-    "Segment by",
-    ["Seniority", "Metro area", "Source", "Remote vs onsite"],
-    label_visibility="collapsed",
-)
-
-segments = []
-if dim == "Seniority":
-    for level in SENIORITY_ORDER:
-        segments.append((level.title(), jobs[jobs.seniority == level]))
-elif dim == "Metro area":
-    for metro, needles in METROS.items():
-        mask = jobs.location.fillna("").str.contains("|".join(needles), case=False)
-        segments.append((metro, jobs[mask]))
-elif dim == "Source":
-    for source in jobs.source.value_counts().index:
-        segments.append((source.title(), jobs[jobs.source == source]))
-else:
-    segments = [
-        ("Remote", jobs[jobs.remote == True]),  # noqa: E712
-        ("Onsite / unspecified", jobs[jobs.remote != True]),  # noqa: E712
-    ]
-
-segments = [(name, seg) for name, seg in segments if len(seg) >= 5]
-
-for start in range(0, len(segments), 4):
-    cols = st.columns(min(4, len(segments) - start))
-    for col, (name, seg) in zip(cols, segments[start:start + 4]):
-        with col:
-            med = median_mid(seg)
-            st.metric(f"{name} · postings", f"{len(seg):,}", f"${med / 1000:.0f}k median" if med else "no salary data", delta_color="off")
-            seg_skills = skills[skills.job_id.isin(seg.id)]
-            top_seg = seg_skills.skill.value_counts().head(6)
-            if len(top_seg):
-                n_with_skills = seg_skills.job_id.nunique()
-                seg_pct = top_seg / n_with_skills * 100
-                st.plotly_chart(
-                    style(hbar(
-                        [SHORT.get(s, s) for s in seg_pct.index], seg_pct.values,
-                        text=[f"{p:.0f}%" for p in seg_pct.values],
-                        compact=True,
-                    ), height=230, left=0, right=8),
-                    use_container_width=True,
-                    key=f"seg-{dim}-{name}",
+    for start in range(0, len(segments), 4):
+        cols = st.columns(min(4, len(segments) - start))
+        for col, (name, seg) in zip(cols, segments[start:start + 4]):
+            with col, st.container(border=True):
+                med = median_mid(seg)
+                st.metric(
+                    f"{name} · postings", f"{len(seg):,}",
+                    f"${med / 1000:.0f}k median" if med else "no salary data",
+                    delta_color="off",
                 )
-            else:
-                st.caption("not enough skill data")
+                seg_skills = skills[skills.job_id.isin(seg.id)]
+                top_seg = seg_skills.skill.value_counts().head(6)
+                if len(top_seg):
+                    n_with_skills = seg_skills.job_id.nunique()
+                    seg_pct = top_seg / n_with_skills * 100
+                    st.plotly_chart(
+                        style(hbar(
+                            [SHORT.get(s, s) for s in seg_pct.index], seg_pct.values,
+                            text=[f"{p:.0f}%" for p in seg_pct.values],
+                            compact=True,
+                        ), height=230, left=0, right=8),
+                        use_container_width=True,
+                        key=f"seg-{dim}-{name}",
+                    )
+                else:
+                    st.caption("not enough skill data")
 
-st.divider()
+    st.divider()
 
-with st.expander("Data notes & sources"):
-    st.markdown(
-        """
+    with st.expander("Data notes & sources"):
+        st.markdown(
+            """
 - **Sources:** Adzuna (US, salaries), Remotive, Jobicy, The Muse, Arbeitnow — ingested daily at 11:00 UTC via GitHub Actions.
 - **Skill extraction** is rule-based (curated ~90-skill vocabulary, word-boundary regex) — free and reproducible.
 - Adzuna's free API truncates descriptions, so **skill percentages use only full-description sources**; Adzuna powers salary and metro stats.
 - Segment skill percentages are within postings that have at least one extracted skill.
 - Seniority is inferred from job titles (entry / mid / senior / staff+).
-        """
-    )
-    st.dataframe(
-        skills_ft.skill.value_counts().reset_index().rename(columns={"skill": "Skill", "count": "Postings"}),
-        use_container_width=True, height=300,
-    )
+            """
+        )
+        st.dataframe(
+            skills_ft.skill.value_counts().reset_index().rename(columns={"skill": "Skill", "count": "Postings"}),
+            use_container_width=True, height=300,
+        )
