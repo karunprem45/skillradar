@@ -6,8 +6,9 @@ and forecasts which skills are rising or falling.
 
 ## Status
 
-- [x] **Phase 1 — Ingestion**: pull postings from Adzuna / Remotive / Arbeitnow into a database
-- [ ] Phase 2 — LLM skill extraction (Claude, structured JSON output)
+- [x] **Phase 1 — Ingestion**: pull postings from 5 sources (Adzuna, Remotive, Arbeitnow, Jobicy, The Muse)
+- [x] **Phase 2a — Rule-based skill extraction** (free baseline): curated vocabulary + regex matching, plus seniority inference (`python -m src.extract_rules`)
+- [ ] Phase 2b — LLM skill extraction to benchmark against the baseline (code ready in `src/extract.py`; needs an API key with credits, or swap to Groq free tier)
 - [ ] Phase 3 — Daily automated pipeline (Prefect / GitHub Actions cron)
 - [ ] Phase 4 — Trend forecasting + role clustering, tracked in MLflow
 - [ ] Phase 5 — FastAPI + Streamlit dashboard
@@ -34,3 +35,10 @@ Add Adzuna keys to `.env` for US city-level postings with salary data.
 
 The database is SQLite (`data/skillradar.db`) by default; set `DATABASE_URL`
 in `.env` to point at Postgres/Neon when scaling up.
+
+## Data-quality notes
+
+- Adzuna's free search API returns **truncated ~500-char description snippets**,
+  so its postings are used for salary/location/title analytics but excluded from
+  skill-frequency stats. Full-text sources (Remotive, Jobicy, The Muse, Arbeitnow)
+  drive the skill analysis and grow with every daily run.
