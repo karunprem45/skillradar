@@ -1,18 +1,18 @@
 {
-  "_note": "Manually curated gold labels: vocabulary skills genuinely demanded in each posting, judged from title + first 4200 chars of description (the same window src.evaluate scores against).",
+  "_note": "Manually curated gold labels: vocabulary skills genuinely demanded in each posting, judged from title + first 4200 chars of description (the same window src.evaluate scores against). US-only scope.",
   "themuse:21624956": ["Machine Learning", "Python", "Linux", "PyTorch", "C++", "Computer Vision"],
   "jobicy:147548": ["Generative AI", "Machine Learning", "LLMs", "Python", "SQL", "CI/CD", "Git", "Statistics"],
   "themuse:19272148": ["Machine Learning", "Deep Learning", "Reinforcement Learning", "Python", "Java", "Scala", "Spark", "Time Series"],
-  "arbeitnow:werkstudent-ai-automatisierung-berlin-260065": ["LLMs", "Python", "RAG", "Vector Databases"],
   "jobicy:148891": ["Machine Learning", "Python", "Spark", "Databricks", "Generative AI", "CI/CD", "GitHub Actions", "Docker", "Kubernetes", "Terraform", "SQL", "Data Modeling"],
   "themuse:21905840": ["Databricks", "AWS", "GCP"],
-  "jobicy:148223": ["Power BI", "Python", "SQL", "Azure", "Spark", "CI/CD"],
-  "themuse:21841199": [],
   "themuse:20944609": ["SQL", "Looker", "Data Modeling", "dbt", "Git", "Experimentation", "Data Visualization", "Data Governance"],
-  "arbeitnow:senior-ai-engineer-wurzburg-415522": ["Machine Learning", "LLMs", "RAG", "Python", "AWS", "Azure"],
   "themuse:21731029": ["Generative AI", "Machine Learning", "Computer Vision", "NLP"],
-  "jobicy:146263": ["Snowflake", "AWS", "Azure", "GCP", "Vector Databases", "dbt", "Java", "Python", "Scala", "SQL", "Databricks", "Hadoop", "Elasticsearch", "NoSQL", "Spark", "Kafka", "Airflow"],
-  "arbeitnow:junior-business-analyst-ki-ai-champion-hamburg-411937": ["Excel"],
-  "jobicy:145916": ["Python", "scikit-learn", "TensorFlow", "MLflow", "Kubeflow", "PyTorch", "MLOps", "CI/CD", "Machine Learning"],
-  "themuse:21297791": ["Machine Learning", "Reinforcement Learning", "PyTorch", "TensorFlow", "Kafka", "Redis", "A/B Testing", "Experimentation", "Vertex AI", "SageMaker", "Model Monitoring"]
+  "themuse:21297791": ["Machine Learning", "Reinforcement Learning", "PyTorch", "TensorFlow", "Kafka", "Redis", "A/B Testing", "Experimentation", "Vertex AI", "SageMaker", "Model Monitoring"],
+  "jobicy:145647": ["Machine Learning", "Java", "Python", "Spark", "Hadoop", "BigQuery", "CI/CD", "Git", "AWS", "Kafka", "Docker", "Kubernetes", "Excel", "MLOps"],
+  "themuse:21442390": ["Spark", "Databricks", "Python", "Scala", "SQL", "Data Modeling", "Airflow", "Kafka", "AWS", "GCP", "Azure", "Machine Learning", "Experimentation"],
+  "themuse:21846690": ["Statistics", "Generative AI", "NLP", "Machine Learning", "Time Series", "A/B Testing", "Excel"],
+  "themuse:21816879": ["ETL", "Azure", "Databricks", "AWS", "Generative AI", "Machine Learning"],
+  "themuse:21754340": ["Python", "Kubernetes", "CI/CD", "GitHub Actions", "Terraform", "Linux"],
+  "jobicy:146434": [],
+  "jobicy:146556": ["Machine Learning", "Deep Learning", "TensorFlow", "PyTorch"]
 }
