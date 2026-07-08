@@ -24,6 +24,11 @@ load_dotenv()
 
 SEARCH_TERMS = ["data scientist", "machine learning engineer", "data engineer", "data analyst"]
 ADZUNA_CITIES = ["Boston", "New York", "San Francisco", "Seattle", "Austin"]
+# full-text sources are keyless/unmetered, so search them more broadly
+FULLTEXT_TERMS = SEARCH_TERMS + [
+    "machine learning", "ai engineer", "analytics engineer", "mlops",
+    "business intelligence", "research scientist", "deep learning",
+]
 
 # crude filter so keyless generic boards only contribute relevant postings
 RELEVANT = re.compile(
@@ -84,7 +89,7 @@ def fetch_adzuna():
 
 
 def fetch_remotive():
-    for term in SEARCH_TERMS:
+    for term in FULLTEXT_TERMS:
         resp = requests.get(
             "https://remotive.com/api/remote-jobs",
             params={"search": term, "limit": 100},
@@ -92,6 +97,8 @@ def fetch_remotive():
         )
         resp.raise_for_status()
         for item in resp.json().get("jobs", []):
+            if not RELEVANT.search(item.get("title", "")):
+                continue
             yield {
                 "source": "remotive",
                 "source_id": f"remotive:{item['id']}",
@@ -108,7 +115,7 @@ def fetch_remotive():
 
 
 def fetch_arbeitnow():
-    for page in range(1, 4):
+    for page in range(1, 6):
         resp = requests.get(
             "https://www.arbeitnow.com/api/job-board-api",
             params={"page": page},
@@ -160,7 +167,7 @@ def fetch_jobicy():
 
 
 def fetch_themuse():
-    for page in range(1, 11):
+    for page in range(1, 21):
         resp = requests.get(
             "https://www.themuse.com/api/public/jobs",
             params={"category": "Data and Analytics", "page": page},
