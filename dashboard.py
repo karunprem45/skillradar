@@ -59,6 +59,10 @@ st.markdown(
     html, body, [class*="st-"], p, span, label {
         font-family: 'Inter', system-ui, sans-serif;
     }
+    /* keep Streamlit's icon glyphs on their icon font (else they render as raw text) */
+    span[data-testid="stIconMaterial"], [class*="material-symbols"] {
+        font-family: 'Material Symbols Rounded' !important;
+    }
     h1, h2, h3, div[data-testid="stMetricValue"], button[data-baseweb="tab"] {
         font-family: 'Space Grotesk', system-ui, sans-serif !important;
         letter-spacing: -0.01em;
