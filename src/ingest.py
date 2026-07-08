@@ -4,6 +4,8 @@ Sources:
   - Adzuna (US, all job types)      — needs ADZUNA_APP_ID / ADZUNA_APP_KEY in .env
   - Remotive (remote tech jobs)     — no key needed
   - Arbeitnow (tech job board)      — no key needed
+  - Jobicy (remote tech jobs)       — no key needed
+  - The Muse (US city-level jobs)   — no key needed
 
 Run:  python -m src.ingest
 Re-running is safe: postings are deduped on source_id.
@@ -131,13 +133,66 @@ def fetch_arbeitnow():
             }
 
 
+def fetch_jobicy():
+    for industry in ("data-science", "engineering"):
+        resp = requests.get(
+            "https://jobicy.com/api/v2/remote-jobs",
+            params={"count": 100, "industry": industry},
+            timeout=30,
+        )
+        resp.raise_for_status()
+        for item in resp.json().get("jobs", []):
+            if not RELEVANT.search(item.get("jobTitle", "")):
+                continue
+            yield {
+                "source": "jobicy",
+                "source_id": f"jobicy:{item['id']}",
+                "title": item.get("jobTitle", ""),
+                "company": item.get("companyName"),
+                "location": item.get("jobGeo"),
+                "remote": True,
+                "salary_min": item.get("annualSalaryMin"),
+                "salary_max": item.get("annualSalaryMax"),
+                "description": strip_html(item.get("jobDescription")),
+                "url": item.get("url"),
+                "posted_at": parse_date(item.get("pubDate")),
+            }
+
+
+def fetch_themuse():
+    for page in range(1, 11):
+        resp = requests.get(
+            "https://www.themuse.com/api/public/jobs",
+            params={"category": "Data and Analytics", "page": page},
+            timeout=30,
+        )
+        resp.raise_for_status()
+        for item in resp.json().get("results", []):
+            if not RELEVANT.search(item.get("name", "")):
+                continue
+            locations = ", ".join(loc["name"] for loc in item.get("locations", []))
+            yield {
+                "source": "themuse",
+                "source_id": f"themuse:{item['id']}",
+                "title": item.get("name", ""),
+                "company": (item.get("company") or {}).get("name"),
+                "location": locations,
+                "remote": "Flexible / Remote" in locations or None,
+                "salary_min": None,
+                "salary_max": None,
+                "description": strip_html(item.get("contents")),
+                "url": (item.get("refs") or {}).get("landing_page"),
+                "posted_at": parse_date(item.get("publication_date")),
+            }
+
+
 def ingest():
     init_db()
     session = Session()
     existing = {sid for (sid,) in session.query(Job.source_id).all()}
     new_count, skipped = 0, 0
 
-    for fetch in (fetch_adzuna, fetch_remotive, fetch_arbeitnow):
+    for fetch in (fetch_adzuna, fetch_remotive, fetch_arbeitnow, fetch_jobicy, fetch_themuse):
         source_new = 0
         try:
             for row in fetch():
