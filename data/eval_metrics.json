@@ -1,0 +1,9 @@
+{
+  "n_postings": 15,
+  "true_positives": 103,
+  "false_positives": 1,
+  "false_negatives": 0,
+  "precision": 0.99,
+  "recall": 1.0,
+  "f1": 0.995
+}

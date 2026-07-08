@@ -8,11 +8,25 @@ and forecasts which skills are rising or falling.
 
 - [x] **Phase 1 — Ingestion**: pull postings from 5 sources (Adzuna, Remotive, Arbeitnow, Jobicy, The Muse)
 - [x] **Phase 2a — Rule-based skill extraction** (free baseline): curated vocabulary + regex matching, plus seniority inference (`python -m src.extract_rules`)
-- [ ] Phase 2b — LLM skill extraction to benchmark against the baseline (code ready in `src/extract.py`; needs an API key with credits, or swap to Groq free tier)
-- [x] **Phase 3 — Daily automated pipeline**: GitHub Actions cron runs ingest + extraction every day at 11:00 UTC and commits the updated database
-- [ ] Phase 4 — Trend forecasting + role clustering, tracked in MLflow
-- [x] **Phase 5 — Streamlit dashboard**: `streamlit run dashboard.py` — headline stats, top skills, salary by skill, metro comparison, seniority mix
-- [ ] Phase 6 — Docker, CI/CD, monitoring, public deployment
+- [x] **Phase 2b — Measured extraction quality**: hand-labeled gold set + error analysis (`python -m src.evaluate`) — **F1 0.995** (0.96 before error-analysis fixes)
+- [x] **Phase 3 — Daily automated pipeline**: GitHub Actions cron runs the full loop daily at 11:00 UTC — ingest → extract → evaluate → retrain — and commits data + model artifacts
+- [x] **Phase 4a — ML models**: salary prediction (HistGradientBoosting, **14% MAE improvement over median baseline**; Ridge for interpretable skill premiums) + role clustering (KMeans over TF-IDF of titles+skills) — `python -m src.train_salary`, `python -m src.cluster_roles`; optional MLflow logging
+- [ ] Phase 4b — Skill-demand trend forecasting (needs a few weeks of daily history — accumulating now)
+- [ ] Phase 4c — LLM extraction benchmark vs the rule baseline (code ready in `src/extract.py`; Groq free tier planned)
+- [x] **Phase 5 — Streamlit dashboard**: `streamlit run dashboard.py` — market overview, segment analysis, and ML lab tabs
+- [ ] Phase 6 — Public deployment on Streamlit Community Cloud
+
+## Model card (auto-refreshed daily)
+
+| Component | Method | Result |
+|---|---|---|
+| Skill extraction | ~90-skill vocabulary, word-boundary regex | F1 0.995 / precision 0.99 / recall 1.00 on a 15-posting, 103-label gold set |
+| Salary prediction | HistGradientBoosting on skills + seniority + metro + remote | MAE ≈ $38k vs $44k median baseline (−14%), R² ≈ 0.25 on 20% held-out test |
+| Skill premiums | Ridge coefficients | e.g. ETL +$21k, ML +$17k, Experimentation +$16k |
+| Role archetypes | KMeans (k=6), TF-IDF of title + skills | analyst ($110k median) → ML-heavy ($187k median) spread |
+
+R² is modest and honestly reported: most salary postings come from Adzuna, whose free API truncates
+descriptions, so skill features are sparse there. Improves as full-text sources accumulate daily.
 
 ## Setup
 

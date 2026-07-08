@@ -18,7 +18,7 @@ VOCAB = {
     "R": [],  # handled by custom pattern below (too many false positives otherwise)
     "Java": ["java(?!script)"],
     "Scala": ["scala(?!bility|ble)"],
-    "C++": [r"c\+\+"],
+    "C++": [],  # custom pattern below: \b can't follow '+'
     "JavaScript": ["javascript"],
     "TypeScript": ["typescript"],
     "Rust": ["rust(?!y)"],
@@ -35,7 +35,7 @@ VOCAB = {
     "Reinforcement Learning": ["reinforcement learning"],
     "Time Series": ["time[- ]series"],
     "Causal Inference": ["causal inference"],
-    "A/B Testing": ["a/b test", "ab test", "a/b experiment"],
+    "A/B Testing": ["a/b test(?:ing|s)?", "ab test(?:ing|s)?", "a/b experiments?"],
     "Statistics": ["statistics", "statistical (?:analysis|modeling|methods)"],
     "Experimentation": ["experimentation"],
     "Feature Engineering": ["feature engineering"],
@@ -82,12 +82,12 @@ VOCAB = {
     "CI/CD": ["ci/cd", "cicd", "continuous integration"],
     "GitHub Actions": ["github actions"],
     "Jenkins": ["jenkins"],
-    "Git": ["git(?!hub actions|lab)"],
+    "Git": ["git(?!hub|lab)", "github(?! actions)"],
     "Linux": ["linux"],
     "MLOps": ["mlops", "ml ops"],
     "MLflow": ["mlflow"],
     "Kubeflow": ["kubeflow"],
-    "Model Monitoring": ["model monitoring", "model drift", "data drift"],
+    "Model Monitoring": ["model monitoring", "model drift", "data drift", "drift detection"],
     "FastAPI": ["fastapi"],
     "Flask": ["flask"],
     "Django": ["django"],
@@ -101,8 +101,8 @@ VOCAB = {
     "Matplotlib": ["matplotlib"],
     "Seaborn": ["seaborn"],
     "Plotly": ["plotly"],
-    "Data Visualization": ["data visuali[sz]ation"],
-    "Vector Databases": ["vector (?:database|db|store)", "pinecone", "weaviate", "chromadb", "faiss"],
+    "Data Visualization": ["data visuali[sz]ations?"],
+    "Vector Databases": ["vector (?:databases?|dbs?|stores?)", "pinecone", "weaviate", "chromadb", "faiss"],
     "Jupyter": ["jupyter"],
 }
 
@@ -113,6 +113,8 @@ PATTERNS = {
 }
 # "R" needs word-boundary + context to avoid matching initials/abbreviations
 PATTERNS["R"] = re.compile(r"(?:\bR programming\b|[,/(]\s*R\s*[,/)]|\bin R\b)")
+# '+' is a non-word char, so \b fails after it — match C++ without a trailing boundary
+PATTERNS["C++"] = re.compile(r"\bc\+\+", re.IGNORECASE)
 
 SENIORITY_RULES = [
     (re.compile(r"\b(?:staff|principal|lead|director|head of)\b", re.I), "staff+"),

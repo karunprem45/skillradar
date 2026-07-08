@@ -30,10 +30,16 @@ jobs:
       - name: Extract skills (rule-based)
         run: python -m src.extract_rules
 
-      - name: Commit updated database
+      - name: Retrain models on fresh data
+        run: |
+          python -m src.evaluate
+          python -m src.train_salary
+          python -m src.cluster_roles
+
+      - name: Commit updated database and model artifacts
         run: |
           git config user.name "Karuniya Premnath"
           git config user.email "karunprem45@users.noreply.github.com"
-          git add data/skillradar.db
+          git add data/
           git diff --cached --quiet || git commit -m "Daily data update"
           git push
