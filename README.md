@@ -13,8 +13,22 @@ and forecasts which skills are rising or falling.
 - [x] **Phase 4a — ML models**: salary prediction (HistGradientBoosting, **14% MAE improvement over median baseline**; Ridge for interpretable skill premiums) + role clustering (KMeans over TF-IDF of titles+skills) — `python -m src.train_salary`, `python -m src.cluster_roles`; optional MLflow logging
 - [ ] Phase 4b — Skill-demand trend forecasting (needs a few weeks of daily history — accumulating now)
 - [ ] Phase 4c — LLM extraction benchmark vs the rule baseline (code ready in `src/extract.py`; Groq free tier planned)
-- [x] **Phase 5 — Streamlit dashboard**: `streamlit run dashboard.py` — market overview, segment analysis, and ML lab tabs
+- [x] **Phase 5 — Streamlit dashboard**: `streamlit run dashboard.py` — market overview, segment analysis, ML lab, and job feed tabs
+- [x] **Phase 5b — Near-real-time alerts**: pipeline runs every 6 hours; new entry/mid openings push to your phone via [ntfy.sh](https://ntfy.sh) (`python -m src.alerts`)
 - [ ] Phase 6 — Public deployment on Streamlit Community Cloud
+
+## Alerts
+
+Every pipeline run pushes a notification with freshly found openings that match your
+filter (default: entry/mid level). Free, no account:
+
+1. Install the **ntfy** app (iOS/Android) and subscribe to your topic.
+2. Set in `.env` (locally) and as the `NTFY_TOPIC` repo secret (for CI):
+   `NTFY_TOPIC=<your-unguessable-topic>`; optionally `ALERT_SENIORITY=entry,mid` and `ALERT_HOURS=8`.
+3. That's it — `src/alerts.py` runs after every ingest.
+
+Why polling, not push: the job-board APIs (Adzuna, Remotive, The Muse, Jobicy, Arbeitnow)
+are pull-only — none offer webhooks — so the 6-hour cron is the honest "near-real-time".
 
 ## Model card (auto-refreshed daily)
 
