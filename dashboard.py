@@ -6,11 +6,19 @@ import streamlit as st
 
 from src.db import engine
 
-# reference palette (validated) — single hue for magnitude, ordinal ramp for seniority
-BLUE = "#2a78d6"
-ORDINAL = ["#86b6ef", "#5598e7", "#2a78d6", "#1c5cab"]  # entry -> staff+
-INK_MUTED = "#898781"
-GRID = "#e1e0d9"
+# carbon theme — monochrome grey ramp on near-black surfaces (lightness carries order,
+# outlines carry the mark, so the single-series charts stay readable and CVD-safe)
+INK = "#e8e8e4"
+INK_MUTED = "#8a8983"
+GRID = "#2c2c2a"
+LINE = "#d8d7d0"                       # bar outline
+FILL = "rgba(216,215,208,0.14)"        # bar fill behind the outline
+ORDINAL_FILLS = [                      # entry -> staff+ (opacity steps = ordinal ramp)
+    "rgba(216,215,208,0.07)",
+    "rgba(216,215,208,0.20)",
+    "rgba(216,215,208,0.42)",
+    "rgba(216,215,208,0.70)",
+]
 FONT = 'system-ui, -apple-system, "Segoe UI", sans-serif'
 
 METROS = {
@@ -20,47 +28,116 @@ METROS = {
     "Seattle": ["Seattle", "King County", "Bellevue"],
     "Austin": ["Austin", "Travis County"],
 }
+SENIORITY_ORDER = ["entry", "mid", "senior", "staff+"]
+
+# short names for the narrow segment mini-charts
+SHORT = {
+    "Machine Learning": "ML",
+    "Deep Learning": "DL",
+    "Generative AI": "GenAI",
+    "Experimentation": "Experiments",
+    "Statistics": "Stats",
+    "Data Visualization": "DataViz",
+    "Data Governance": "Governance",
+    "Data Warehousing": "Warehousing",
+    "Data Modeling": "Modeling",
+    "Computer Vision": "CV",
+    "Prompt Engineering": "Prompting",
+    "Feature Engineering": "Feat. Eng.",
+    "GitHub Actions": "GH Actions",
+    "Vector Databases": "Vector DBs",
+    "Model Monitoring": "Monitoring",
+    "REST APIs": "REST",
+}
 
 st.set_page_config(page_title="SkillRadar", page_icon="📡", layout="wide")
+
+st.markdown(
+    """
+    <style>
+    @keyframes rise {
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: none; }
+    }
+    div[data-testid="stMetric"], div.stPlotlyChart, div[data-testid="stExpander"],
+    h1, h2, h3 {
+        animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+    }
+    div[data-testid="stColumn"]:nth-of-type(2) > div { animation-delay: 0.10s; }
+    div[data-testid="stColumn"]:nth-of-type(3) > div { animation-delay: 0.20s; }
+    div[data-testid="stColumn"]:nth-of-type(4) > div { animation-delay: 0.30s; }
+    div[data-testid="stColumn"]:nth-of-type(5) > div { animation-delay: 0.40s; }
+    div[data-testid="stMetric"] {
+        background: #1a1a19;
+        border: 1px solid #2c2c2a;
+        border-radius: 10px;
+        padding: 14px 16px;
+        transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+    div[data-testid="stMetric"]:hover {
+        border-color: #4a4a46;
+        transform: translateY(-2px);
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 
 @st.cache_data(ttl=3600)
 def load_data():
     jobs = pd.read_sql(
-        "SELECT id, source, title, location, salary_min, salary_max, seniority, ingested_at FROM jobs",
+        "SELECT id, source, title, location, remote, salary_min, salary_max, seniority, ingested_at FROM jobs",
         engine,
     )
     skills = pd.read_sql("SELECT job_id, skill FROM job_skills", engine)
     return jobs, skills
 
 
-def style(fig, height=420):
+def style(fig, height=420, left=0, right=70):
     fig.update_layout(
         height=height,
-        margin=dict(l=0, r=70, t=8, b=0),
+        margin=dict(l=left, r=right, t=8, b=0),
         plot_bgcolor="rgba(0,0,0,0)",
         paper_bgcolor="rgba(0,0,0,0)",
         font=dict(family=FONT, color=INK_MUTED, size=13),
         showlegend=False,
         bargap=0.35,
+        hoverlabel=dict(bgcolor="#1a1a19", bordercolor=LINE, font=dict(color=INK)),
     )
     fig.update_xaxes(gridcolor=GRID, zeroline=False, linecolor=GRID)
     fig.update_yaxes(gridcolor="rgba(0,0,0,0)", zeroline=False)
     return fig
 
 
-def hbar(labels, values, text=None, color=BLUE):
+def hbar(labels, values, text=None, compact=False):
     fig = go.Figure(
         go.Bar(
             x=values, y=labels, orientation="h",
-            marker=dict(color=color, cornerradius=4),
-            text=text, textposition="outside", textfont=dict(color=INK_MUTED),
+            marker=dict(color=FILL, cornerradius=4, line=dict(color=LINE, width=1.5)),
+            text=text, textposition="outside", textfont=dict(color=INK),
             cliponaxis=False,
             hovertemplate="%{y}: %{x}<extra></extra>",
         )
     )
-    fig.update_yaxes(autorange="reversed")
+    fig.update_yaxes(autorange="reversed", automargin=True)
+    if compact:
+        # narrow-column mode: label lives inside the bar, no axes at all
+        fig.update_traces(
+            text=[f"{lbl}  ·  {txt}" for lbl, txt in zip(labels, text)],
+            textposition="auto", insidetextanchor="start",
+            textfont=dict(color=INK, size=12),
+        )
+        fig.update_xaxes(visible=False)
+        fig.update_yaxes(showticklabels=False)
     return fig
+
+
+def median_mid(df):
+    with_salary = df.dropna(subset=["salary_min", "salary_max"])
+    if not len(with_salary):
+        return None
+    return ((with_salary.salary_min + with_salary.salary_max) / 2).median()
 
 
 jobs, skills = load_data()
@@ -77,13 +154,12 @@ st.caption(
 # ---- headline tiles ----
 llm_pct = skills_ft[skills_ft.skill.isin(["LLMs", "Generative AI", "RAG"])].job_id.nunique() / len(full_text) * 100
 salaries = jobs.dropna(subset=["salary_min", "salary_max"])
-median_salary = ((salaries.salary_min + salaries.salary_max) / 2).median()
 
 c1, c2, c3, c4 = st.columns(4)
 c1.metric("Job postings tracked", f"{len(jobs):,}")
 c2.metric("With salary data", f"{len(salaries):,}")
-c3.metric("Ask for LLM/GenAI skills", f"{llm_pct:.0f}%")
-c4.metric("Median salary (US)", f"${median_salary:,.0f}")
+c3.metric("LLM/GenAI demand", f"{llm_pct:.0f}%")
+c4.metric("Median salary (US)", f"${median_mid(jobs) / 1000:.0f}k")
 
 st.divider()
 
@@ -123,13 +199,10 @@ with left:
     rows = []
     for metro, needles in METROS.items():
         mask = jobs.location.fillna("").str.contains("|".join(needles), case=False)
-        metro_jobs = jobs[mask].dropna(subset=["salary_min", "salary_max"])
-        if len(metro_jobs):
-            rows.append({
-                "metro": metro,
-                "n": len(metro_jobs),
-                "median": ((metro_jobs.salary_min + metro_jobs.salary_max) / 2).median(),
-            })
+        metro_jobs = jobs[mask]
+        med = median_mid(metro_jobs)
+        if med:
+            rows.append({"metro": metro, "n": len(metro_jobs.dropna(subset=["salary_min"])), "median": med})
     metros = pd.DataFrame(rows).sort_values("n", ascending=False)
     st.plotly_chart(
         style(hbar(metros.metro, metros.n, text=[f"${m / 1000:.0f}k" for m in metros["median"]])),
@@ -139,18 +212,71 @@ with left:
 with right:
     st.subheader("Seniority mix")
     st.caption("Inferred from titles across all postings")
-    order = ["entry", "mid", "senior", "staff+"]
-    sen = jobs.seniority.value_counts().reindex(order).fillna(0)
+    sen = jobs.seniority.value_counts().reindex(SENIORITY_ORDER).fillna(0)
     fig = go.Figure(
         go.Bar(
-            x=order, y=sen.values,
-            marker=dict(color=ORDINAL, cornerradius=4),
+            x=SENIORITY_ORDER, y=sen.values,
+            marker=dict(color=ORDINAL_FILLS, cornerradius=4, line=dict(color=LINE, width=1.5)),
             text=[f"{int(v):,}" for v in sen.values], textposition="outside",
-            textfont=dict(color=INK_MUTED), cliponaxis=False,
+            textfont=dict(color=INK), cliponaxis=False,
             hovertemplate="%{x}: %{y}<extra></extra>",
         )
     )
     st.plotly_chart(style(fig), use_container_width=True)
+
+st.divider()
+
+# ---- segment analysis ----
+st.subheader("Segment analysis")
+st.caption("Slice the market by a dimension — each segment gets its own profile")
+
+dim = st.selectbox(
+    "Segment by",
+    ["Seniority", "Metro area", "Source", "Remote vs onsite"],
+    label_visibility="collapsed",
+)
+
+segments = []
+if dim == "Seniority":
+    for level in SENIORITY_ORDER:
+        segments.append((level.title(), jobs[jobs.seniority == level]))
+elif dim == "Metro area":
+    for metro, needles in METROS.items():
+        mask = jobs.location.fillna("").str.contains("|".join(needles), case=False)
+        segments.append((metro, jobs[mask]))
+elif dim == "Source":
+    for source in jobs.source.value_counts().index:
+        segments.append((source.title(), jobs[jobs.source == source]))
+else:
+    segments = [
+        ("Remote", jobs[jobs.remote == True]),  # noqa: E712
+        ("Onsite / unspecified", jobs[jobs.remote != True]),  # noqa: E712
+    ]
+
+segments = [(name, seg) for name, seg in segments if len(seg) >= 5]
+
+for start in range(0, len(segments), 4):
+    cols = st.columns(min(4, len(segments) - start))
+    for col, (name, seg) in zip(cols, segments[start:start + 4]):
+        with col:
+            med = median_mid(seg)
+            st.metric(f"{name} · postings", f"{len(seg):,}", f"${med / 1000:.0f}k median" if med else "no salary data", delta_color="off")
+            seg_skills = skills[skills.job_id.isin(seg.id)]
+            top_seg = seg_skills.skill.value_counts().head(6)
+            if len(top_seg):
+                n_with_skills = seg_skills.job_id.nunique()
+                seg_pct = top_seg / n_with_skills * 100
+                st.plotly_chart(
+                    style(hbar(
+                        [SHORT.get(s, s) for s in seg_pct.index], seg_pct.values,
+                        text=[f"{p:.0f}%" for p in seg_pct.values],
+                        compact=True,
+                    ), height=230, left=0, right=8),
+                    use_container_width=True,
+                    key=f"seg-{dim}-{name}",
+                )
+            else:
+                st.caption("not enough skill data")
 
 st.divider()
 
@@ -160,6 +286,7 @@ with st.expander("Data notes & sources"):
 - **Sources:** Adzuna (US, salaries), Remotive, Jobicy, The Muse, Arbeitnow — ingested daily at 11:00 UTC via GitHub Actions.
 - **Skill extraction** is rule-based (curated ~90-skill vocabulary, word-boundary regex) — free and reproducible.
 - Adzuna's free API truncates descriptions, so **skill percentages use only full-description sources**; Adzuna powers salary and metro stats.
+- Segment skill percentages are within postings that have at least one extracted skill.
 - Seniority is inferred from job titles (entry / mid / senior / staff+).
         """
     )
