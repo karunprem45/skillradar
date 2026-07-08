@@ -32,6 +32,7 @@ class Job(Base):
     posted_at = Column(Date)
     ingested_at = Column(DateTime, server_default=func.now())
     extracted = Column(Boolean, default=False)           # set True after LLM skill extraction
+    seniority = Column(String(32))                       # entry | mid | senior | staff+ (from extraction)
 
 
 class JobSkill(Base):
