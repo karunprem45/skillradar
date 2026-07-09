@@ -1,67 +1,67 @@
 {
-  "n_postings": 1264,
+  "n_postings": 1268,
   "n_features": 26,
-  "n_test": 253,
-  "baseline_mae": 44174,
-  "mae": 37973,
-  "r2": 0.245,
-  "mae_improvement_pct": 14.0,
+  "n_test": 254,
+  "baseline_mae": 41479,
+  "mae": 35272,
+  "r2": 0.24,
+  "mae_improvement_pct": 15.0,
   "premiums": [
     {
-      "skill": "ETL",
-      "delta": 20720
+      "skill": "Machine Learning",
+      "delta": 19546
     },
     {
-      "skill": "Machine Learning",
-      "delta": 16859
+      "skill": "ETL",
+      "delta": 16158
     },
     {
       "skill": "Experimentation",
-      "delta": 16387
-    },
-    {
-      "skill": "Generative AI",
-      "delta": 10178
+      "delta": 16154
     },
     {
       "skill": "AWS",
-      "delta": 7791
+      "delta": 8231
     },
     {
-      "skill": "Azure",
-      "delta": 2032
-    },
-    {
-      "skill": "Snowflake",
-      "delta": 1950
-    },
-    {
-      "skill": "Spark",
-      "delta": 652
+      "skill": "Generative AI",
+      "delta": 6944
     },
     {
       "skill": "Statistics",
-      "delta": -359
+      "delta": 6034
+    },
+    {
+      "skill": "Azure",
+      "delta": 2985
+    },
+    {
+      "skill": "Spark",
+      "delta": 1191
+    },
+    {
+      "skill": "Snowflake",
+      "delta": 329
     },
     {
       "skill": "LLMs",
-      "delta": -4030
-    },
-    {
-      "skill": "Power BI",
-      "delta": -10631
+      "delta": -4321
     },
     {
       "skill": "Data Governance",
-      "delta": -14114
+      "delta": -7152
+    },
+    {
+      "skill": "Python",
+      "delta": -12911
     },
     {
       "skill": "Databricks",
-      "delta": -14672
+      "delta": -16741
     },
     {
       "skill": "SQL",
-      "delta": -17698
+      "delta": -17243
     }
   ]
 }
