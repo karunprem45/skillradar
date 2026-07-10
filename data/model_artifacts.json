@@ -1,67 +1,67 @@
 {
-  "n_postings": 1404,
+  "n_postings": 1484,
   "n_features": 29,
-  "n_test": 281,
-  "baseline_mae": 43148,
-  "mae": 36360,
-  "r2": 0.221,
-  "mae_improvement_pct": 15.7,
+  "n_test": 297,
+  "baseline_mae": 47778,
+  "mae": 39849,
+  "r2": 0.281,
+  "mae_improvement_pct": 16.6,
   "premiums": [
     {
       "skill": "Machine Learning",
-      "delta": 22748
-    },
-    {
-      "skill": "ETL",
-      "delta": 18821
+      "delta": 21994
     },
     {
       "skill": "Experimentation",
-      "delta": 13810
+      "delta": 21420
     },
     {
-      "skill": "AWS",
-      "delta": 12117
+      "skill": "ETL",
+      "delta": 19967
     },
     {
       "skill": "Statistics",
-      "delta": 10610
+      "delta": 14390
     },
     {
-      "skill": "Generative AI",
-      "delta": 6977
-    },
-    {
-      "skill": "Azure",
-      "delta": -211
-    },
-    {
-      "skill": "Data Modeling",
-      "delta": -1222
-    },
-    {
-      "skill": "Spark",
-      "delta": -2314
+      "skill": "AWS",
+      "delta": 10182
     },
     {
       "skill": "Snowflake",
-      "delta": -2518
+      "delta": 7262
+    },
+    {
+      "skill": "Spark",
+      "delta": 2967
+    },
+    {
+      "skill": "Generative AI",
+      "delta": 1860
+    },
+    {
+      "skill": "Azure",
+      "delta": -2638
+    },
+    {
+      "skill": "Excel",
+      "delta": -3157
     },
     {
       "skill": "Databricks",
-      "delta": -11882
+      "delta": -8826
     },
     {
       "skill": "Data Governance",
-      "delta": -12777
-    },
-    {
-      "skill": "SQL",
-      "delta": -15385
+      "delta": -9426
     },
     {
       "skill": "Computer Vision",
-      "delta": -15402
+      "delta": -11836
+    },
+    {
+      "skill": "SQL",
+      "delta": -20241
     }
   ]
 }
