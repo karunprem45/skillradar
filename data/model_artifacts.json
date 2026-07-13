@@ -1,67 +1,67 @@
 {
-  "n_postings": 1675,
+  "n_postings": 1703,
   "n_features": 34,
-  "n_test": 335,
-  "baseline_mae": 48905,
-  "mae": 41963,
-  "r2": 0.21,
-  "mae_improvement_pct": 14.2,
+  "n_test": 341,
+  "baseline_mae": 46558,
+  "mae": 38532,
+  "r2": 0.259,
+  "mae_improvement_pct": 17.2,
   "premiums": [
     {
       "skill": "Machine Learning",
-      "delta": 20097
+      "delta": 23838
     },
     {
       "skill": "ETL",
-      "delta": 17084
-    },
-    {
-      "skill": "NLP",
-      "delta": 13577
+      "delta": 15925
     },
     {
       "skill": "AWS",
-      "delta": 12388
+      "delta": 13138
     },
     {
-      "skill": "Statistics",
-      "delta": 9478
+      "skill": "NLP",
+      "delta": 12971
     },
     {
       "skill": "Experimentation",
-      "delta": 6049
+      "delta": 10459
     },
     {
       "skill": "Java",
-      "delta": 5913
+      "delta": 8908
+    },
+    {
+      "skill": "Statistics",
+      "delta": 6240
     },
     {
       "skill": "Spark",
-      "delta": 4854
+      "delta": 4522
     },
     {
       "skill": "Generative AI",
-      "delta": 4520
+      "delta": 3354
     },
     {
-      "skill": "Python",
-      "delta": 1785
-    },
-    {
-      "skill": "Data Governance",
-      "delta": -12098
+      "skill": "Azure",
+      "delta": 1682
     },
     {
       "skill": "Computer Vision",
-      "delta": -14353
+      "delta": -11404
+    },
+    {
+      "skill": "Data Governance",
+      "delta": -11949
     },
     {
       "skill": "Airflow",
-      "delta": -15528
+      "delta": -13510
     },
     {
       "skill": "SQL",
-      "delta": -23791
+      "delta": -21438
     }
   ]
 }
