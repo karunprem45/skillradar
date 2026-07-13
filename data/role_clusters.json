@@ -2,9 +2,9 @@
   "k": 6,
   "clusters": [
     {
-      "label": "Engineer Machine",
-      "size": 344,
-      "median_salary": 184744,
+      "label": "Machine Learning",
+      "size": 329,
+      "median_salary": 185163,
       "top_skills": [
         {
           "skill": "Machine Learning",
@@ -15,15 +15,15 @@
           "share": 5
         },
         {
-          "skill": "Experimentation",
+          "skill": "MLOps",
+          "share": 1
+        },
+        {
+          "skill": "PyTorch",
           "share": 1
         },
         {
           "skill": "NLP",
-          "share": 1
-        },
-        {
-          "skill": "MLOps",
           "share": 1
         },
         {
@@ -34,70 +34,101 @@
     },
     {
       "label": "Data Engineer",
-      "size": 201,
-      "median_salary": 148117,
+      "size": 182,
+      "median_salary": 153210,
       "top_skills": [
         {
-          "skill": "SQL",
-          "share": 38
+          "skill": "Python",
+          "share": 42
         },
         {
-          "skill": "Python",
-          "share": 38
+          "skill": "SQL",
+          "share": 37
         },
         {
           "skill": "AWS",
-          "share": 32
+          "share": 36
         },
         {
           "skill": "ETL",
-          "share": 25
-        },
-        {
-          "skill": "Snowflake",
-          "share": 18
+          "share": 28
         },
         {
           "skill": "Spark",
-          "share": 18
+          "share": 21
+        },
+        {
+          "skill": "Snowflake",
+          "share": 20
         }
       ]
     },
     {
       "label": "Data Scientist",
-      "size": 118,
-      "median_salary": 171762,
+      "size": 123,
+      "median_salary": 169103,
       "top_skills": [
         {
           "skill": "Machine Learning",
-          "share": 53
+          "share": 48
         },
         {
           "skill": "Statistics",
-          "share": 25
+          "share": 28
         },
         {
           "skill": "Experimentation",
           "share": 15
         },
         {
-          "skill": "Causal Inference",
-          "share": 9
-        },
-        {
           "skill": "Python",
-          "share": 9
+          "share": 11
         },
         {
           "skill": "Java",
-          "share": 7
+          "share": 11
+        },
+        {
+          "skill": "Causal Inference",
+          "share": 10
+        }
+      ]
+    },
+    {
+      "label": "Data Analyst",
+      "size": 119,
+      "median_salary": 110206,
+      "top_skills": [
+        {
+          "skill": "SQL",
+          "share": 39
+        },
+        {
+          "skill": "Data Governance",
+          "share": 29
+        },
+        {
+          "skill": "Power BI",
+          "share": 13
+        },
+        {
+          "skill": "Snowflake",
+          "share": 13
+        },
+        {
+          "skill": "Data Modeling",
+          "share": 11
+        },
+        {
+          "skill": "Excel",
+          "share": 10
         }
       ]
     },
     {
       "label": "Engineer Ai",
       "size": 113,
-      "median_salary": 147760,
+      "median_salary": 143289,
       "top_skills": [
         {
           "skill": "Machine Learning",
@@ -105,85 +136,54 @@
         },
         {
           "skill": "Generative AI",
-          "share": 62
+          "share": 60
         },
         {
           "skill": "LLMs",
-          "share": 40
+          "share": 35
         },
         {
           "skill": "Python",
-          "share": 30
+          "share": 25
         },
         {
           "skill": "Computer Vision",
-          "share": 18
+          "share": 17
         },
         {
           "skill": "AWS",
-          "share": 16
-        }
-      ]
-    },
-    {
-      "label": "Data Analyst",
-      "size": 105,
-      "median_salary": 104743,
-      "top_skills": [
-        {
-          "skill": "SQL",
-          "share": 34
-        },
-        {
-          "skill": "Data Governance",
-          "share": 31
-        },
-        {
-          "skill": "Snowflake",
           "share": 13
-        },
-        {
-          "skill": "Excel",
-          "share": 11
-        },
-        {
-          "skill": "Data Modeling",
-          "share": 11
-        },
-        {
-          "skill": "Power BI",
-          "share": 10
         }
       ]
     },
     {
-      "label": "Machine Learning",
-      "size": 33,
-      "median_salary": 203330,
+      "label": "Machine Learning \u00b7 Experimentation",
+      "size": 51,
+      "median_salary": 197894,
       "top_skills": [
         {
           "skill": "Machine Learning",
-          "share": 97
+          "share": 100
         },
         {
-          "skill": "Deep Learning",
-          "share": 3
+          "skill": "Experimentation",
+          "share": 12
         },
         {
-          "skill": "PyTorch",
-          "share": 3
+          "skill": "Python",
+          "share": 6
         },
         {
-          "skill": "TensorFlow",
-          "share": 3
+          "skill": "Reinforcement Learning",
+          "share": 4
         },
         {
           "skill": "LLMs",
-          "share": 3
+          "share": 4
         },
         {
-          "skill": "Statistics",
-          "share": 3
+          "skill": "Java",
+          "share": 4
         }
       ]
     }
