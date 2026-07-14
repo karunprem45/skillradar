@@ -1,67 +1,67 @@
 {
-  "n_postings": 1838,
+  "n_postings": 1848,
   "n_features": 34,
-  "n_test": 368,
-  "baseline_mae": 45328,
-  "mae": 38610,
-  "r2": 0.197,
-  "mae_improvement_pct": 14.8,
+  "n_test": 370,
+  "baseline_mae": 47074,
+  "mae": 40008,
+  "r2": 0.207,
+  "mae_improvement_pct": 15.0,
   "premiums": [
     {
-      "skill": "ETL",
-      "delta": 22711
-    },
-    {
       "skill": "Machine Learning",
-      "delta": 22379
+      "delta": 20683
     },
     {
-      "skill": "Java",
-      "delta": 12045
+      "skill": "ETL",
+      "delta": 20168
     },
     {
       "skill": "NLP",
-      "delta": 11687
-    },
-    {
-      "skill": "AWS",
-      "delta": 7573
-    },
-    {
-      "skill": "Experimentation",
-      "delta": 6676
+      "delta": 13307
     },
     {
       "skill": "Spark",
-      "delta": 5925
+      "delta": 12025
     },
     {
-      "skill": "Generative AI",
-      "delta": 2891
+      "skill": "Java",
+      "delta": 11295
     },
     {
       "skill": "Statistics",
-      "delta": 1800
+      "delta": 11017
+    },
+    {
+      "skill": "AWS",
+      "delta": 8184
+    },
+    {
+      "skill": "Experimentation",
+      "delta": 6003
+    },
+    {
+      "skill": "Generative AI",
+      "delta": 5180
     },
     {
       "skill": "Redshift",
-      "delta": -160
+      "delta": 2424
+    },
+    {
+      "skill": "Databricks",
+      "delta": -9976
     },
     {
       "skill": "Data Governance",
-      "delta": -12578
+      "delta": -10798
     },
     {
       "skill": "Computer Vision",
-      "delta": -12878
-    },
-    {
-      "skill": "Airflow",
-      "delta": -15420
+      "delta": -14266
     },
     {
       "skill": "SQL",
-      "delta": -17962
+      "delta": -18512
     }
   ]
 }
