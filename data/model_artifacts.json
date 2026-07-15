@@ -1,67 +1,67 @@
 {
-  "n_postings": 1921,
+  "n_postings": 1963,
   "n_features": 35,
-  "n_test": 385,
-  "baseline_mae": 45277,
-  "mae": 38136,
-  "r2": 0.187,
-  "mae_improvement_pct": 15.8,
+  "n_test": 393,
+  "baseline_mae": 46533,
+  "mae": 37438,
+  "r2": 0.28,
+  "mae_improvement_pct": 19.5,
   "premiums": [
     {
       "skill": "Machine Learning",
-      "delta": 24214
+      "delta": 23245
     },
     {
       "skill": "ETL",
-      "delta": 18457
-    },
-    {
-      "skill": "NLP",
-      "delta": 15598
-    },
-    {
-      "skill": "Java",
-      "delta": 12129
+      "delta": 16241
     },
     {
       "skill": "Experimentation",
-      "delta": 10061
+      "delta": 11413
     },
     {
-      "skill": "Statistics",
-      "delta": 9641
-    },
-    {
-      "skill": "AWS",
-      "delta": 6257
+      "skill": "Java",
+      "delta": 10638
     },
     {
       "skill": "Git",
-      "delta": 5651
+      "delta": 9186
     },
     {
-      "skill": "Snowflake",
-      "delta": 3891
+      "skill": "NLP",
+      "delta": 6319
     },
     {
-      "skill": "Generative AI",
-      "delta": 2244
+      "skill": "Spark",
+      "delta": 5747
     },
     {
-      "skill": "Databricks",
-      "delta": -12208
+      "skill": "Statistics",
+      "delta": 5419
     },
     {
-      "skill": "Airflow",
-      "delta": -13620
+      "skill": "AWS",
+      "delta": 5332
+    },
+    {
+      "skill": "Python",
+      "delta": 3566
+    },
+    {
+      "skill": "Power BI",
+      "delta": -13389
     },
     {
       "skill": "Computer Vision",
-      "delta": -14866
+      "delta": -15848
     },
     {
       "skill": "SQL",
-      "delta": -20122
+      "delta": -18840
+    },
+    {
+      "skill": "Airflow",
+      "delta": -19914
     }
   ]
 }
