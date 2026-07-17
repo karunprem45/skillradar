@@ -1,67 +1,67 @@
 {
-  "n_postings": 2101,
+  "n_postings": 2153,
   "n_features": 37,
-  "n_test": 421,
-  "baseline_mae": 46285,
-  "mae": 38096,
-  "r2": 0.233,
-  "mae_improvement_pct": 17.7,
+  "n_test": 431,
+  "baseline_mae": 48055,
+  "mae": 40277,
+  "r2": 0.221,
+  "mae_improvement_pct": 16.2,
   "premiums": [
     {
       "skill": "Machine Learning",
-      "delta": 25210
+      "delta": 25593
     },
     {
       "skill": "ETL",
-      "delta": 17579
+      "delta": 20045
     },
     {
       "skill": "Java",
-      "delta": 13108
+      "delta": 14945
     },
     {
       "skill": "AWS",
-      "delta": 10780
-    },
-    {
-      "skill": "NLP",
-      "delta": 8765
-    },
-    {
-      "skill": "Statistics",
-      "delta": 7584
-    },
-    {
-      "skill": "Git",
-      "delta": 6755
-    },
-    {
-      "skill": "Spark",
-      "delta": 5781
-    },
-    {
-      "skill": "Experimentation",
-      "delta": 5405
+      "delta": 12332
     },
     {
       "skill": "Generative AI",
-      "delta": 4616
+      "delta": 11738
+    },
+    {
+      "skill": "NLP",
+      "delta": 9619
+    },
+    {
+      "skill": "Experimentation",
+      "delta": 6960
+    },
+    {
+      "skill": "Spark",
+      "delta": 5050
+    },
+    {
+      "skill": "Statistics",
+      "delta": 4666
+    },
+    {
+      "skill": "dbt",
+      "delta": 3391
     },
     {
       "skill": "Airflow",
-      "delta": -12790
+      "delta": -13194
     },
     {
-      "skill": "Power BI",
-      "delta": -14439
+      "skill": "Computer Vision",
+      "delta": -15102
     },
     {
       "skill": "SAS",
-      "delta": -17622
+      "delta": -17755
     },
     {
       "skill": "SQL",
-      "delta": -20209
+      "delta": -21468
     }
   ]
 }
