@@ -1,67 +1,67 @@
 {
-  "n_postings": 2159,
+  "n_postings": 2164,
   "n_features": 37,
-  "n_test": 432,
-  "baseline_mae": 45916,
-  "mae": 39003,
-  "r2": 0.214,
-  "mae_improvement_pct": 15.1,
+  "n_test": 433,
+  "baseline_mae": 45131,
+  "mae": 37581,
+  "r2": 0.237,
+  "mae_improvement_pct": 16.7,
   "premiums": [
     {
       "skill": "Machine Learning",
-      "delta": 24030
+      "delta": 25743
     },
     {
       "skill": "ETL",
-      "delta": 17658
-    },
-    {
-      "skill": "Generative AI",
-      "delta": 13257
-    },
-    {
-      "skill": "Java",
-      "delta": 11924
-    },
-    {
-      "skill": "Experimentation",
-      "delta": 10000
+      "delta": 14955
     },
     {
       "skill": "AWS",
-      "delta": 9540
+      "delta": 12189
     },
     {
       "skill": "NLP",
-      "delta": 7697
+      "delta": 10842
     },
     {
-      "skill": "Statistics",
-      "delta": 5075
+      "skill": "Experimentation",
+      "delta": 7708
     },
     {
       "skill": "Spark",
-      "delta": 4381
+      "delta": 7108
     },
     {
-      "skill": "Git",
-      "delta": 3411
+      "skill": "Generative AI",
+      "delta": 6983
     },
     {
-      "skill": "Data Governance",
-      "delta": -11919
+      "skill": "Java",
+      "delta": 6719
     },
     {
-      "skill": "SAS",
-      "delta": -16974
+      "skill": "Snowflake",
+      "delta": 4050
+    },
+    {
+      "skill": "dbt",
+      "delta": 3101
+    },
+    {
+      "skill": "Computer Vision",
+      "delta": -12400
     },
     {
       "skill": "Airflow",
-      "delta": -17540
+      "delta": -15426
+    },
+    {
+      "skill": "SAS",
+      "delta": -16305
     },
     {
       "skill": "SQL",
-      "delta": -23188
+      "delta": -21554
     }
   ]
 }
