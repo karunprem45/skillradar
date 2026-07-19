@@ -1,67 +1,67 @@
 {
-  "n_postings": 2257,
+  "n_postings": 2289,
   "n_features": 38,
-  "n_test": 452,
-  "baseline_mae": 43007,
-  "mae": 36951,
-  "r2": 0.189,
-  "mae_improvement_pct": 14.1,
+  "n_test": 458,
+  "baseline_mae": 46880,
+  "mae": 37991,
+  "r2": 0.242,
+  "mae_improvement_pct": 19.0,
   "premiums": [
     {
       "skill": "Machine Learning",
-      "delta": 24792
-    },
-    {
-      "skill": "Experimentation",
-      "delta": 15020
-    },
-    {
-      "skill": "ETL",
-      "delta": 14774
-    },
-    {
-      "skill": "Generative AI",
-      "delta": 12114
+      "delta": 23964
     },
     {
       "skill": "Java",
-      "delta": 10984
-    },
-    {
-      "skill": "AWS",
-      "delta": 9897
-    },
-    {
-      "skill": "Spark",
-      "delta": 9678
+      "delta": 15271
     },
     {
       "skill": "NLP",
-      "delta": 8222
+      "delta": 14155
     },
     {
-      "skill": "Statistics",
-      "delta": 8216
+      "skill": "AWS",
+      "delta": 13945
+    },
+    {
+      "skill": "ETL",
+      "delta": 13659
+    },
+    {
+      "skill": "Experimentation",
+      "delta": 10986
+    },
+    {
+      "skill": "Generative AI",
+      "delta": 8562
     },
     {
       "skill": "Data Modeling",
-      "delta": 4768
+      "delta": 5456
+    },
+    {
+      "skill": "Spark",
+      "delta": 4256
+    },
+    {
+      "skill": "Azure",
+      "delta": 2799
     },
     {
       "skill": "Computer Vision",
-      "delta": -12903
+      "delta": -12590
     },
     {
       "skill": "Airflow",
-      "delta": -15692
-    },
-    {
-      "skill": "SAS",
-      "delta": -15996
+      "delta": -17164
     },
     {
       "skill": "SQL",
-      "delta": -21812
+      "delta": -20420
+    },
+    {
+      "skill": "SAS",
+      "delta": -23140
     }
   ]
 }
