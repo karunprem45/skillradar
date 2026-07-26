@@ -1,67 +1,67 @@
 {
-  "n_postings": 2886,
+  "n_postings": 2910,
   "n_features": 46,
-  "n_test": 578,
-  "baseline_mae": 46556,
-  "mae": 38719,
-  "r2": 0.215,
-  "mae_improvement_pct": 16.8,
+  "n_test": 582,
+  "baseline_mae": 43868,
+  "mae": 37189,
+  "r2": 0.202,
+  "mae_improvement_pct": 15.2,
   "premiums": [
     {
       "skill": "Machine Learning",
-      "delta": 24678
+      "delta": 25216
     },
     {
       "skill": "Spark",
-      "delta": 18381
-    },
-    {
-      "skill": "Generative AI",
-      "delta": 16029
-    },
-    {
-      "skill": "Experimentation",
-      "delta": 14343
+      "delta": 16383
     },
     {
       "skill": "Java",
-      "delta": 13523
+      "delta": 12712
     },
     {
       "skill": "ETL",
-      "delta": 10264
+      "delta": 11120
+    },
+    {
+      "skill": "Experimentation",
+      "delta": 10850
+    },
+    {
+      "skill": "Generative AI",
+      "delta": 8690
     },
     {
       "skill": "AWS",
-      "delta": 9721
+      "delta": 8528
     },
     {
-      "skill": "Redshift",
-      "delta": 7922
-    },
-    {
-      "skill": "Statistics",
-      "delta": 7393
+      "skill": "PostgreSQL",
+      "delta": 8161
     },
     {
       "skill": "NLP",
-      "delta": 6882
+      "delta": 6780
+    },
+    {
+      "skill": "Statistics",
+      "delta": 5644
     },
     {
       "skill": "Databricks",
-      "delta": -15642
-    },
-    {
-      "skill": "Airflow",
-      "delta": -15751
+      "delta": -17104
     },
     {
       "skill": "SQL",
-      "delta": -17373
+      "delta": -17250
+    },
+    {
+      "skill": "Airflow",
+      "delta": -18036
     },
     {
       "skill": "SAS",
-      "delta": -26837
+      "delta": -27824
     }
   ]
 }
