@@ -1,67 +1,67 @@
 {
-  "n_postings": 3409,
+  "n_postings": 3448,
   "n_features": 48,
-  "n_test": 682,
-  "baseline_mae": 48773,
-  "mae": 40329,
-  "r2": 0.239,
-  "mae_improvement_pct": 17.3,
+  "n_test": 690,
+  "baseline_mae": 48592,
+  "mae": 39821,
+  "r2": 0.228,
+  "mae_improvement_pct": 18.1,
   "premiums": [
     {
       "skill": "Machine Learning",
-      "delta": 25375
+      "delta": 26329
     },
     {
       "skill": "Spark",
-      "delta": 21156
-    },
-    {
-      "skill": "Experimentation",
-      "delta": 16150
+      "delta": 15384
     },
     {
       "skill": "Statistics",
-      "delta": 10242
-    },
-    {
-      "skill": "AWS",
-      "delta": 10067
+      "delta": 13073
     },
     {
       "skill": "Java",
-      "delta": 8321
-    },
-    {
-      "skill": "Git",
-      "delta": 8297
-    },
-    {
-      "skill": "Redshift",
-      "delta": 6427
+      "delta": 11812
     },
     {
       "skill": "Data Modeling",
-      "delta": 5505
+      "delta": 6917
+    },
+    {
+      "skill": "Experimentation",
+      "delta": 6534
     },
     {
       "skill": "ETL",
-      "delta": 5445
+      "delta": 6364
     },
     {
-      "skill": "Data Governance",
-      "delta": -11956
+      "skill": "AWS",
+      "delta": 6146
+    },
+    {
+      "skill": "Redshift",
+      "delta": 5940
+    },
+    {
+      "skill": "Generative AI",
+      "delta": 5312
+    },
+    {
+      "skill": "Tableau",
+      "delta": -12959
     },
     {
       "skill": "SQL",
-      "delta": -17920
-    },
-    {
-      "skill": "Airflow",
-      "delta": -27355
+      "delta": -18231
     },
     {
       "skill": "SAS",
-      "delta": -28266
+      "delta": -22855
+    },
+    {
+      "skill": "Airflow",
+      "delta": -23089
     }
   ]
 }
