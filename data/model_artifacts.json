@@ -1,67 +1,67 @@
 {
-  "n_postings": 3951,
+  "n_postings": 3983,
   "n_features": 51,
-  "n_test": 791,
-  "baseline_mae": 47175,
-  "mae": 38491,
-  "r2": 0.247,
-  "mae_improvement_pct": 18.4,
+  "n_test": 797,
+  "baseline_mae": 46346,
+  "mae": 36977,
+  "r2": 0.277,
+  "mae_improvement_pct": 20.2,
   "premiums": [
     {
       "skill": "Machine Learning",
-      "delta": 27712
+      "delta": 27874
     },
     {
       "skill": "Spark",
-      "delta": 21161
+      "delta": 23574
     },
     {
       "skill": "Experimentation",
-      "delta": 18593
-    },
-    {
-      "skill": "AWS",
-      "delta": 12752
+      "delta": 18263
     },
     {
       "skill": "Statistics",
-      "delta": 10874
-    },
-    {
-      "skill": "Git",
-      "delta": 10334
+      "delta": 12752
     },
     {
       "skill": "Java",
-      "delta": 10226
+      "delta": 10293
+    },
+    {
+      "skill": "AWS",
+      "delta": 10106
+    },
+    {
+      "skill": "Redshift",
+      "delta": 9118
+    },
+    {
+      "skill": "Git",
+      "delta": 7964
     },
     {
       "skill": "Data Modeling",
-      "delta": 7205
+      "delta": 6355
     },
     {
-      "skill": "ETL",
-      "delta": 4449
+      "skill": "Generative AI",
+      "delta": 4416
     },
     {
-      "skill": "Python",
-      "delta": 3998
-    },
-    {
-      "skill": "Computer Vision",
-      "delta": -15595
+      "skill": "Airflow",
+      "delta": -16514
     },
     {
       "skill": "SQL",
-      "delta": -18667
+      "delta": -17128
     },
     {
       "skill": "MLOps",
-      "delta": -26983
+      "delta": -27636
     },
     {
       "skill": "SAS",
-      "delta": -29415
+      "delta": -29207
     }
   ]
 }
