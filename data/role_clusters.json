@@ -3,8 +3,8 @@
   "clusters": [
     {
       "label": "Learning Machine",
-      "size": 779,
-      "median_salary": 189566,
+      "size": 791,
+      "median_salary": 188426,
       "top_skills": [
         {
           "skill": "Machine Learning",
@@ -34,47 +34,47 @@
     },
     {
       "label": "Data Engineer",
-      "size": 544,
-      "median_salary": 120404,
+      "size": 480,
+      "median_salary": 138370,
       "top_skills": [
         {
           "skill": "SQL",
-          "share": 54
+          "share": 44
         },
         {
           "skill": "ETL",
-          "share": 31
+          "share": 36
         },
         {
           "skill": "Python",
-          "share": 30
+          "share": 36
+        },
+        {
+          "skill": "AWS",
+          "share": 31
         },
         {
           "skill": "Snowflake",
-          "share": 23
+          "share": 22
         },
         {
           "skill": "Databricks",
-          "share": 19
-        },
-        {
-          "skill": "Data Modeling",
-          "share": 12
+          "share": 22
         }
       ]
     },
     {
       "label": "Data Scientist",
-      "size": 391,
-      "median_salary": 175844,
+      "size": 333,
+      "median_salary": 178012,
       "top_skills": [
         {
           "skill": "Machine Learning",
-          "share": 70
+          "share": 69
         },
         {
           "skill": "Python",
-          "share": 36
+          "share": 38
         },
         {
           "skill": "Statistics",
@@ -82,52 +82,83 @@
         },
         {
           "skill": "NLP",
-          "share": 17
+          "share": 21
         },
         {
           "skill": "SQL",
-          "share": 14
+          "share": 17
         },
         {
           "skill": "Experimentation",
-          "share": 11
+          "share": 10
         }
       ]
     },
     {
       "label": "Ai Engineer",
-      "size": 262,
-      "median_salary": 139070,
+      "size": 296,
+      "median_salary": 136070,
       "top_skills": [
         {
           "skill": "Machine Learning",
-          "share": 62
+          "share": 65
         },
         {
           "skill": "Generative AI",
-          "share": 57
+          "share": 51
         },
         {
           "skill": "LLMs",
-          "share": 32
+          "share": 28
         },
         {
           "skill": "Python",
-          "share": 20
+          "share": 21
         },
         {
           "skill": "SQL",
-          "share": 16
+          "share": 15
         },
         {
           "skill": "AWS",
-          "share": 11
+          "share": 12
+        }
+      ]
+    },
+    {
+      "label": "Data Analyst",
+      "size": 250,
+      "median_salary": 100095,
+      "top_skills": [
+        {
+          "skill": "SQL",
+          "share": 38
+        },
+        {
+          "skill": "Snowflake",
+          "share": 22
+        },
+        {
+          "skill": "Data Governance",
+          "share": 18
+        },
+        {
+          "skill": "Python",
+          "share": 14
+        },
+        {
+          "skill": "AWS",
+          "share": 12
+        },
+        {
+          "skill": "SAS",
+          "share": 12
         }
       ]
     },
     {
       "label": "Java Developer",
-      "size": 230,
+      "size": 231,
       "median_salary": 158102,
       "top_skills": [
         {
@@ -153,37 +184,6 @@
         {
           "skill": "CI/CD",
           "share": 11
-        }
-      ]
-    },
-    {
-      "label": "Data Engineer \u00b7 AWS",
-      "size": 173,
-      "median_salary": 154535,
-      "top_skills": [
-        {
-          "skill": "AWS",
-          "share": 96
-        },
-        {
-          "skill": "Spark",
-          "share": 29
-        },
-        {
-          "skill": "Python",
-          "share": 26
-        },
-        {
-          "skill": "Snowflake",
-          "share": 21
-        },
-        {
-          "skill": "ETL",
-          "share": 16
-        },
-        {
-          "skill": "SAS",
-          "share": 14
         }
       ]
     }
