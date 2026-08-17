@@ -1,67 +1,67 @@
 {
-  "n_postings": 4936,
+  "n_postings": 4956,
   "n_features": 53,
-  "n_test": 988,
-  "baseline_mae": 46397,
-  "mae": 38209,
-  "r2": 0.228,
-  "mae_improvement_pct": 17.6,
+  "n_test": 992,
+  "baseline_mae": 45065,
+  "mae": 37423,
+  "r2": 0.241,
+  "mae_improvement_pct": 17.0,
   "premiums": [
     {
       "skill": "Experimentation",
-      "delta": 28549
+      "delta": 24771
     },
     {
       "skill": "Machine Learning",
-      "delta": 25820
+      "delta": 24454
     },
     {
       "skill": "Causal Inference",
-      "delta": 19897
+      "delta": 16213
     },
     {
       "skill": "Spark",
-      "delta": 16894
-    },
-    {
-      "skill": "AWS",
-      "delta": 11828
+      "delta": 16032
     },
     {
       "skill": "Git",
-      "delta": 10651
-    },
-    {
-      "skill": "Java",
-      "delta": 9881
+      "delta": 13650
     },
     {
       "skill": "Statistics",
-      "delta": 8652
+      "delta": 12717
     },
     {
-      "skill": "Data Modeling",
-      "delta": 6096
+      "skill": "AWS",
+      "delta": 9946
+    },
+    {
+      "skill": "GCP",
+      "delta": 7661
     },
     {
       "skill": "Python",
-      "delta": 6084
+      "delta": 7623
     },
     {
-      "skill": "Airflow",
-      "delta": -16413
+      "skill": "Java",
+      "delta": 7568
     },
     {
-      "skill": "Data Visualization",
-      "delta": -19067
+      "skill": "PyTorch",
+      "delta": -17491
     },
     {
       "skill": "MLOps",
-      "delta": -19353
+      "delta": -19835
+    },
+    {
+      "skill": "Data Visualization",
+      "delta": -20097
     },
     {
       "skill": "SAS",
-      "delta": -29470
+      "delta": -26390
     }
   ]
 }
