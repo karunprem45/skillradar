@@ -1,67 +1,67 @@
 {
-  "n_postings": 5109,
+  "n_postings": 5132,
   "n_features": 53,
-  "n_test": 1022,
-  "baseline_mae": 45829,
-  "mae": 37432,
-  "r2": 0.266,
-  "mae_improvement_pct": 18.3,
+  "n_test": 1027,
+  "baseline_mae": 46748,
+  "mae": 37773,
+  "r2": 0.271,
+  "mae_improvement_pct": 19.2,
   "premiums": [
     {
-      "skill": "Experimentation",
-      "delta": 25669
-    },
-    {
       "skill": "Machine Learning",
-      "delta": 24795
+      "delta": 25361
     },
     {
       "skill": "Spark",
-      "delta": 19173
+      "delta": 22430
+    },
+    {
+      "skill": "Experimentation",
+      "delta": 21886
     },
     {
       "skill": "Causal Inference",
-      "delta": 16214
-    },
-    {
-      "skill": "Git",
-      "delta": 12933
+      "delta": 18758
     },
     {
       "skill": "Statistics",
-      "delta": 10304
+      "delta": 14690
+    },
+    {
+      "skill": "Git",
+      "delta": 13176
     },
     {
       "skill": "AWS",
-      "delta": 8106
+      "delta": 10035
     },
     {
-      "skill": "Data Modeling",
-      "delta": 7911
+      "skill": "Generative AI",
+      "delta": 8228
     },
     {
       "skill": "Java",
-      "delta": 7184
+      "delta": 7504
     },
     {
-      "skill": "Python",
-      "delta": 5898
-    },
-    {
-      "skill": "Data Visualization",
-      "delta": -17186
+      "skill": "Data Modeling",
+      "delta": 7433
     },
     {
       "skill": "RAG",
-      "delta": -18070
+      "delta": -16611
+    },
+    {
+      "skill": "Data Visualization",
+      "delta": -20054
     },
     {
       "skill": "MLOps",
-      "delta": -21897
+      "delta": -24463
     },
     {
       "skill": "SAS",
-      "delta": -27505
+      "delta": -29096
     }
   ]
 }
