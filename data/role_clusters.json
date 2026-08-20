@@ -3,8 +3,8 @@
   "clusters": [
     {
       "label": "Learning Machine",
-      "size": 845,
-      "median_salary": 170013,
+      "size": 848,
+      "median_salary": 170000,
       "top_skills": [
         {
           "skill": "Machine Learning",
@@ -34,20 +34,20 @@
     },
     {
       "label": "Data Scientist",
-      "size": 648,
-      "median_salary": 170000,
+      "size": 662,
+      "median_salary": 169698,
       "top_skills": [
         {
           "skill": "Machine Learning",
-          "share": 70
+          "share": 69
         },
         {
           "skill": "Python",
-          "share": 28
+          "share": 29
         },
         {
           "skill": "Generative AI",
-          "share": 22
+          "share": 21
         },
         {
           "skill": "Statistics",
@@ -65,8 +65,8 @@
     },
     {
       "label": "Data Engineer",
-      "size": 627,
-      "median_salary": 133925,
+      "size": 612,
+      "median_salary": 133941,
       "top_skills": [
         {
           "skill": "SQL",
@@ -74,15 +74,15 @@
         },
         {
           "skill": "Python",
-          "share": 36
+          "share": 35
         },
         {
           "skill": "ETL",
-          "share": 32
+          "share": 33
         },
         {
           "skill": "AWS",
-          "share": 28
+          "share": 29
         },
         {
           "skill": "Databricks",
@@ -96,8 +96,8 @@
     },
     {
       "label": "Data Analyst",
-      "size": 291,
-      "median_salary": 98538,
+      "size": 293,
+      "median_salary": 98776,
       "top_skills": [
         {
           "skill": "SQL",
@@ -109,7 +109,7 @@
         },
         {
           "skill": "Python",
-          "share": 18
+          "share": 17
         },
         {
           "skill": "Data Governance",
