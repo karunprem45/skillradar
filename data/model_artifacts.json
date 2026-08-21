@@ -1,67 +1,67 @@
 {
-  "n_postings": 5321,
+  "n_postings": 5352,
   "n_features": 54,
-  "n_test": 1065,
-  "baseline_mae": 46437,
-  "mae": 38149,
-  "r2": 0.267,
-  "mae_improvement_pct": 17.8,
+  "n_test": 1071,
+  "baseline_mae": 47779,
+  "mae": 39208,
+  "r2": 0.256,
+  "mae_improvement_pct": 17.9,
   "premiums": [
     {
-      "skill": "Machine Learning",
-      "delta": 24463
+      "skill": "Experimentation",
+      "delta": 26850
     },
     {
-      "skill": "Experimentation",
-      "delta": 23059
+      "skill": "Machine Learning",
+      "delta": 26093
     },
     {
       "skill": "Spark",
-      "delta": 19026
+      "delta": 21880
     },
     {
       "skill": "Causal Inference",
-      "delta": 17706
+      "delta": 15127
     },
     {
       "skill": "Statistics",
-      "delta": 14616
+      "delta": 14357
     },
     {
       "skill": "Git",
-      "delta": 13613
+      "delta": 13798
     },
     {
       "skill": "Java",
-      "delta": 8946
+      "delta": 9996
     },
     {
       "skill": "AWS",
-      "delta": 8479
-    },
-    {
-      "skill": "Data Modeling",
-      "delta": 7616
+      "delta": 8102
     },
     {
       "skill": "Python",
-      "delta": 6843
+      "delta": 6953
     },
     {
-      "skill": "Data Visualization",
-      "delta": -15696
+      "skill": "Generative AI",
+      "delta": 6498
     },
     {
-      "skill": "Data Governance",
-      "delta": -16221
+      "skill": "SQL",
+      "delta": -17294
+    },
+    {
+      "skill": "RAG",
+      "delta": -18373
     },
     {
       "skill": "MLOps",
-      "delta": -22048
+      "delta": -24225
     },
     {
       "skill": "SAS",
-      "delta": -27792
+      "delta": -27386
     }
   ]
 }
