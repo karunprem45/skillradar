@@ -1,67 +1,67 @@
 {
-  "n_postings": 5756,
+  "n_postings": 5783,
   "n_features": 57,
-  "n_test": 1152,
-  "baseline_mae": 44985,
-  "mae": 38282,
-  "r2": 0.232,
-  "mae_improvement_pct": 14.9,
+  "n_test": 1157,
+  "baseline_mae": 45686,
+  "mae": 38305,
+  "r2": 0.249,
+  "mae_improvement_pct": 16.2,
   "premiums": [
     {
       "skill": "BigQuery",
-      "delta": 29344
+      "delta": 30775
     },
     {
       "skill": "Machine Learning",
-      "delta": 26144
-    },
-    {
-      "skill": "Spark",
-      "delta": 19566
+      "delta": 26693
     },
     {
       "skill": "Experimentation",
-      "delta": 17907
+      "delta": 21292
+    },
+    {
+      "skill": "Spark",
+      "delta": 18574
     },
     {
       "skill": "Causal Inference",
-      "delta": 17172
+      "delta": 14540
     },
     {
       "skill": "Git",
-      "delta": 13412
-    },
-    {
-      "skill": "Statistics",
-      "delta": 10125
-    },
-    {
-      "skill": "Data Modeling",
-      "delta": 9009
-    },
-    {
-      "skill": "AWS",
-      "delta": 8740
+      "delta": 11813
     },
     {
       "skill": "REST APIs",
-      "delta": 8407
+      "delta": 11401
+    },
+    {
+      "skill": "Statistics",
+      "delta": 10924
+    },
+    {
+      "skill": "R",
+      "delta": 9397
+    },
+    {
+      "skill": "Java",
+      "delta": 9347
     },
     {
       "skill": "Excel",
-      "delta": -21029
+      "delta": -19053
     },
     {
-      "skill": "RAG",
-      "delta": -21508
+      "skill": "Data Visualization",
+      "delta": -21520
     },
     {
       "skill": "SAS",
-      "delta": -25842
+      "delta": -23436
     },
     {
       "skill": "MLOps",
-      "delta": -29685
+      "delta": -31367
     }
   ]
 }
