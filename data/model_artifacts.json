@@ -1,67 +1,67 @@
 {
-  "n_postings": 6114,
+  "n_postings": 6122,
   "n_features": 57,
-  "n_test": 1223,
-  "baseline_mae": 44668,
-  "mae": 37470,
-  "r2": 0.248,
-  "mae_improvement_pct": 16.1,
+  "n_test": 1225,
+  "baseline_mae": 45102,
+  "mae": 37545,
+  "r2": 0.241,
+  "mae_improvement_pct": 16.8,
   "premiums": [
     {
       "skill": "BigQuery",
-      "delta": 33910
-    },
-    {
-      "skill": "Machine Learning",
-      "delta": 23362
+      "delta": 32579
     },
     {
       "skill": "Causal Inference",
-      "delta": 23000
+      "delta": 24223
     },
     {
       "skill": "Experimentation",
-      "delta": 21436
+      "delta": 23714
+    },
+    {
+      "skill": "Machine Learning",
+      "delta": 23375
     },
     {
       "skill": "Spark",
-      "delta": 20507
-    },
-    {
-      "skill": "Git",
-      "delta": 13577
+      "delta": 20480
     },
     {
       "skill": "Java",
-      "delta": 9925
+      "delta": 15288
     },
     {
-      "skill": "Python",
-      "delta": 9791
+      "skill": "REST APIs",
+      "delta": 14608
     },
     {
       "skill": "Statistics",
-      "delta": 9448
+      "delta": 11383
     },
     {
-      "skill": "Redshift",
-      "delta": 8455
+      "skill": "Git",
+      "delta": 10547
     },
     {
-      "skill": "RAG",
-      "delta": -20836
+      "skill": "Generative AI",
+      "delta": 9594
     },
     {
       "skill": "SAS",
-      "delta": -20859
+      "delta": -22195
+    },
+    {
+      "skill": "RAG",
+      "delta": -22222
     },
     {
       "skill": "Data Visualization",
-      "delta": -24255
+      "delta": -22464
     },
     {
       "skill": "MLOps",
-      "delta": -28611
+      "delta": -27318
     }
   ]
 }
