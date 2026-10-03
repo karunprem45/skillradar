@@ -1,67 +1,67 @@
 {
-  "n_postings": 8507,
+  "n_postings": 8554,
   "n_features": 60,
-  "n_test": 1702,
-  "baseline_mae": 44743,
-  "mae": 36635,
-  "r2": 0.286,
-  "mae_improvement_pct": 18.1,
+  "n_test": 1711,
+  "baseline_mae": 46312,
+  "mae": 38166,
+  "r2": 0.268,
+  "mae_improvement_pct": 17.6,
   "premiums": [
     {
       "skill": "BigQuery",
-      "delta": 24603
+      "delta": 26329
     },
     {
       "skill": "Machine Learning",
-      "delta": 24009
+      "delta": 24360
     },
     {
-      "skill": "Git",
-      "delta": 15703
+      "skill": "REST APIs",
+      "delta": 18659
     },
     {
       "skill": "Java",
-      "delta": 15494
-    },
-    {
-      "skill": "Experimentation",
-      "delta": 14765
+      "delta": 17782
     },
     {
       "skill": "R",
-      "delta": 13517
+      "delta": 16831
+    },
+    {
+      "skill": "Experimentation",
+      "delta": 16353
     },
     {
       "skill": "Causal Inference",
-      "delta": 13067
+      "delta": 15772
+    },
+    {
+      "skill": "Git",
+      "delta": 14686
     },
     {
       "skill": "Spark",
-      "delta": 12181
+      "delta": 13337
     },
     {
       "skill": "Generative AI",
-      "delta": 11356
+      "delta": 10790
     },
     {
-      "skill": "AWS",
-      "delta": 9825
+      "skill": "CI/CD",
+      "delta": -21850
     },
     {
       "skill": "PyTorch",
-      "delta": -21001
-    },
-    {
-      "skill": "RAG",
-      "delta": -26035
+      "delta": -23365
     },
     {
       "skill": "MLOps",
-      "delta": -32714
+      "delta": -31033
     },
     {
       "skill": "SAS",
-      "delta": -34474
+      "delta": -33141
     }
   ]
 }
