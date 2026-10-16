@@ -3,7 +3,7 @@
   "clusters": [
     {
       "label": "Learning Machine \u00b7 Machine Learning",
-      "size": 1545,
+      "size": 1485,
       "median_salary": 180508,
       "top_skills": [
         {
@@ -33,29 +33,60 @@
       ]
     },
     {
-      "label": "Data Engineer",
-      "size": 1222,
-      "median_salary": 113989,
+      "label": "Data Scientist",
+      "size": 1362,
+      "median_salary": 157088,
       "top_skills": [
         {
-          "skill": "SQL",
-          "share": 52
+          "skill": "Machine Learning",
+          "share": 65
         },
         {
           "skill": "Python",
-          "share": 29
+          "share": 25
+        },
+        {
+          "skill": "Generative AI",
+          "share": 19
+        },
+        {
+          "skill": "Statistics",
+          "share": 18
+        },
+        {
+          "skill": "LLMs",
+          "share": 17
+        },
+        {
+          "skill": "SQL",
+          "share": 13
+        }
+      ]
+    },
+    {
+      "label": "Data Analyst",
+      "size": 1071,
+      "median_salary": 113277,
+      "top_skills": [
+        {
+          "skill": "SQL",
+          "share": 51
         },
         {
           "skill": "Snowflake",
-          "share": 23
+          "share": 28
+        },
+        {
+          "skill": "Python",
+          "share": 28
         },
         {
           "skill": "ETL",
-          "share": 23
+          "share": 25
         },
         {
           "skill": "Power BI",
-          "share": 11
+          "share": 13
         },
         {
           "skill": "Data Governance",
@@ -64,71 +95,40 @@
       ]
     },
     {
-      "label": "Data Scientist",
-      "size": 1211,
-      "median_salary": 158787,
-      "top_skills": [
-        {
-          "skill": "Machine Learning",
-          "share": 67
-        },
-        {
-          "skill": "Python",
-          "share": 24
-        },
-        {
-          "skill": "Generative AI",
-          "share": 22
-        },
-        {
-          "skill": "Statistics",
-          "share": 20
-        },
-        {
-          "skill": "LLMs",
-          "share": 18
-        },
-        {
-          "skill": "SQL",
-          "share": 11
-        }
-      ]
-    },
-    {
-      "label": "Data Engineer \u00b7 AWS",
-      "size": 564,
-      "median_salary": 145627,
+      "label": "Data Engineer",
+      "size": 648,
+      "median_salary": 144110,
       "top_skills": [
         {
           "skill": "AWS",
-          "share": 64
+          "share": 53
         },
         {
           "skill": "Databricks",
-          "share": 44
+          "share": 42
         },
         {
           "skill": "Spark",
-          "share": 29
+          "share": 32
         },
         {
           "skill": "Python",
-          "share": 26
-        },
-        {
-          "skill": "ETL",
-          "share": 18
+          "share": 29
         },
         {
           "skill": "SQL",
-          "share": 18
+          "share": 23
+        },
+        {
+          "skill": "Azure",
+          "share": 23
         }
       ]
     },
     {
       "label": "Learning Machine",
-      "size": 522,
-      "median_salary": 190829,
+      "size": 537,
+      "median_salary": 191069,
       "top_skills": [
         {
           "skill": "Machine Learning",
@@ -158,28 +158,28 @@
     },
     {
       "label": "Java Developer",
-      "size": 388,
-      "median_salary": 136647,
+      "size": 364,
+      "median_salary": 135123,
       "top_skills": [
         {
           "skill": "Java",
-          "share": 93
+          "share": 99
         },
         {
           "skill": "SQL",
-          "share": 29
-        },
-        {
-          "skill": "Python",
-          "share": 27
+          "share": 30
         },
         {
           "skill": "Git",
+          "share": 24
+        },
+        {
+          "skill": "Python",
           "share": 22
         },
         {
           "skill": "Machine Learning",
-          "share": 21
+          "share": 15
         },
         {
           "skill": "CI/CD",
