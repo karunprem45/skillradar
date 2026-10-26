@@ -1,67 +1,67 @@
 {
-  "n_postings": 10866,
+  "n_postings": 10868,
   "n_features": 68,
   "n_test": 2174,
-  "baseline_mae": 45217,
-  "mae": 37391,
-  "r2": 0.272,
-  "mae_improvement_pct": 17.3,
+  "baseline_mae": 45709,
+  "mae": 38117,
+  "r2": 0.269,
+  "mae_improvement_pct": 16.6,
   "premiums": [
     {
       "skill": "Vertex AI",
-      "delta": 53525
+      "delta": 56367
     },
     {
       "skill": "Looker",
-      "delta": 40699
+      "delta": 40378
     },
     {
       "skill": "BigQuery",
-      "delta": 35849
+      "delta": 34994
     },
     {
       "skill": "Machine Learning",
-      "delta": 24505
+      "delta": 24536
     },
     {
       "skill": "Java",
-      "delta": 18641
+      "delta": 19916
     },
     {
       "skill": "REST APIs",
-      "delta": 18276
+      "delta": 17729
+    },
+    {
+      "skill": "Kafka",
+      "delta": 15603
     },
     {
       "skill": "Experimentation",
-      "delta": 16398
-    },
-    {
-      "skill": "TensorFlow",
-      "delta": 14948
-    },
-    {
-      "skill": "R",
-      "delta": 13743
+      "delta": 15492
     },
     {
       "skill": "Statistics",
-      "delta": 13690
+      "delta": 14590
     },
     {
-      "skill": "scikit-learn",
-      "delta": -22379
+      "skill": "Git",
+      "delta": 13809
+    },
+    {
+      "skill": "PyTorch",
+      "delta": -24160
     },
     {
       "skill": "Data Visualization",
-      "delta": -22744
+      "delta": -26041
     },
     {
       "skill": "MLOps",
-      "delta": -32979
+      "delta": -34305
     },
     {
       "skill": "SAS",
-      "delta": -40809
+      "delta": -39130
     }
   ]
 }
