@@ -2,7 +2,7 @@
 
 **A self-updating intelligence platform that tracks what the US data-science job market actually demands — and what it pays.**
 
-[![Live Dashboard](https://img.shields.io/badge/Live-Streamlit_Dashboard-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)]([FILL: your streamlit.app URL])
+[![Dashboard](https://img.shields.io/badge/Dashboard-Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)](dashboard.py)
 [![Pipeline](https://img.shields.io/badge/Pipeline-GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white)](#-how-it-works)
 ![Python](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
@@ -94,17 +94,21 @@ source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # 3. Configure API keys
-cp .env.example .env
-# add your job-board API keys to .env
+# create a .env file with ADZUNA_APP_ID and ADZUNA_APP_KEY
+# (optional: NTFY_TOPIC for new-posting alerts)
 
 # 4. Run the pipeline once
-python [FILL: e.g. src/pipeline.py]
+python -m src.ingest
+python -m src.extract_rules
+python -m src.evaluate
+python -m src.train_salary
+python -m src.cluster_roles
 
 # 5. Launch the dashboard
-streamlit run [FILL: e.g. app.py]
+streamlit run dashboard.py
 ```
 
-> The automated 6-hour refresh runs via GitHub Actions — see [`.github/workflows/[FILL].yml`](.github/workflows/).
+> The automated 6-hour refresh runs via GitHub Actions — see [`.github/workflows/ingest.yml`](.github/workflows/ingest.yml).
 
 ---
 
@@ -112,9 +116,11 @@ streamlit run [FILL: e.g. app.py]
 
 ```
 skillradar/
-├── [FILL: src/            # ingestion, extraction, modeling — match your actual folders]
-├── [FILL: app.py          # Streamlit dashboard]
-├── [FILL: data/           # gold set, cached postings]
+├── src/                  # ingestion, skill extraction, evaluation, salary model, role clustering, alerts
+├── analysis/             # salary hypothesis tests (Python) and regression (R)
+├── data/                 # SQLite database, gold set, eval metrics, model artifacts
+├── dashboard.py          # Streamlit dashboard
+├── .streamlit/           # dashboard theme
 ├── .github/workflows/     # the 6-hour cron pipeline
 ├── requirements.txt
 └── README.md
