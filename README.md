@@ -135,6 +135,10 @@ skillradar/
 **Karuniya Premnath** — MS Data Science @ Northeastern University
 [LinkedIn](https://linkedin.com/in/karuniya-premnath) · [Portfolio](https://karunprem45.github.io/portfolio/) · premnath.k@northeastern.edu
 
+## 🤝 Contributors
+
+- [karan (@dheepakkaran)](https://github.com/dheepakkaran)
+
 ---
 
 *Built to answer a question I had myself: what should I actually be learning, and what is it worth?*
